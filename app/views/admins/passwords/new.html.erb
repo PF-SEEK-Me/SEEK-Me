@@ -1,0 +1,30 @@
+
+<!--css => app/assets/stylesheets/password.scss-->
+
+<div class="reset-password">
+  <h2>Reset Your Password</h2>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "admins/shared/error_messages", resource: resource %>
+
+    <div class="container">
+      <div class="row">
+        <div class="reset-password__field">
+          <div class="col-sm-1">
+            <%= f.label :email %>
+          </div>
+          <div class="col-sm-11">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reset-password__actions">
+      <%= f.submit "Send link for password-reset's instructions", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <%= link_to "back", admin_session_path %>
+
+</div>
