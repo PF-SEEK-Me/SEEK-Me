@@ -1,0 +1,144 @@
+
+<!--css => app/assets/stylesheets/customers/customers-sign-up.scss-->
+
+<div class="customers-sign-up">
+  <h2>Sign up</h2>
+
+  <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
+    <%= render "customers/shared/error_messages", resource: resource %>
+
+    <div class="container">
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "氏名" %>
+          </div>
+          <div class="col-sm-10">
+            <%= "（姓）　" %>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+            <%= "　　　　　　" %>
+            <%= "（名）　" %>
+            <%= f.text_field :first_name, autocomplete: "first_name" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "フリガナ" %>
+          </div>
+          <div class="col-sm-10">
+            <%= "（セイ）" %>
+            <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+            <%= "　　　　　　" %>
+            <%= "（メイ）" %>
+            <%= f.text_field :first_name_kana, autocomplete: "first_name_kana" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "メールアドレス" %>
+          </div>
+          <div class="col-sm-10">
+            <%= "　　　　" %>
+            <%= f.email_field :email, autocomplete: "email" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "郵便番号" %><span class="customers-sign-up__attention">(ハイフンなし)</span>
+          </div>
+          <div class="col-sm-10">
+            <%= "　　　　" %>
+            <%= f.text_field :postal_code, autocomplete: "postal_code" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "住所" %>
+          </div>
+          <div class="col-sm-10">
+            <%= "　　　　" %>
+            <%= f.text_field :address, autocomplete: "address", style: "width: 450px;" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "電話番号" %><span class="customers-sign-up__attention">(ハイフンなし)</span>
+          </div>
+          <div class="col-sm-10">
+            <%= "　　　　" %>
+            <%= f.text_field :telephone_number, autocomplete: "telephone_number" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__ifield">
+          <div class="col-sm-2">
+            <%= f.label "区分" %>
+          </div>
+          <div class="col-sm-10">
+            <span class="customers-sign-up__is-student-field--select">
+              <%= "　　　　" %>
+              <%= f.label "学生 " %>
+              <%= f.radio_button :is_student, true, checked: true %>
+            </span>
+            <span class="customers-sign-up__is-student-field--select">
+              <%= "　　　　" %>
+              <%= f.label "社会人 " %>
+              <%= f.radio_button :is_student, false %>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "パスワード" %>
+            <% if @minimum_password_length %>
+              <span>(<%= @minimum_password_length %> 文字以上)</span>
+            <% end %>
+          </div>
+          <div class="col-sm-10">
+            <%= "　　　　" %>
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="customers-sign-up__field">
+          <div class="col-sm-2">
+            <%= f.label "パスワード" %>
+            <span>(確認用)</span>
+          </div>
+          <div class="col-sm-10">
+            <%= "　　　　" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="customers-sign-up__actions">
+      <%= f.submit "Sign Up", class: "btn btn-lg btn-success", style: "padding: 5px 80px;" %>
+    </div>
+
+  <% end %>
+
+</div>

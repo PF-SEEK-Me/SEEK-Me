@@ -1,0 +1,23 @@
+.sign-in {
+  width: 500px;
+  margin: 80px auto;
+
+  &__email-field {
+    margin-bottom: 35px;
+  }
+
+  &__password-field {
+    margin-bottom: 35px;
+  }
+
+  &__remember-field {
+    margin-left: 20px;
+    margin-bottom: 5px;
+  }
+
+  &__actions {
+    width: 200px;
+    margin: 0 auto;
+  }
+
+}

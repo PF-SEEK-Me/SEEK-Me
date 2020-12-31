@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SEEKMe</title>
+    <title>SEEK Me!</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <!--header-->
+    <header>
+      <%= render "layouts/header" %>
+    </header>
+    <!---->
+
     <%= yield %>
+
+    <!--footer-->
+    <footer>
+      <%= render "layouts/footer" %>
+    </footer>
+    <!---->
   </body>
 </html>

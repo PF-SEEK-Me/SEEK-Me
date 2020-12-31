@@ -1,0 +1,38 @@
+.header {
+  width: 100%;
+  background-color: #353741;
+
+  &__logo {
+    color: #fff;
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+  }
+
+  &__user-name {
+    color: #fff;
+    margin-left: 30%;
+    height: 25px;
+  }
+
+  &__nav-mainList {
+    text-align: right;
+  }
+
+  &__nav-mainItem {
+    list-style: none;
+    color: #fff;
+    display: inline-block;
+    margin: 0 20px;
+
+    &--item {
+      color: #fff;
+    }
+  }
+
+  &__nav-mainItem:last-child {
+    margin-right: 100px;
+  }
+}
