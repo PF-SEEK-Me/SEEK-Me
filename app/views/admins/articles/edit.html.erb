@@ -1,0 +1,51 @@
+<!--css => app/assets/stylesheets/admins/articles.scss-->
+
+<div class="articles">
+  <h3>投稿記事を編集する</h3>
+
+  <div class="articles__new">
+    <%= form_with model: @article, local: true do |f| %>
+      <div class="articles__new-title">
+        <%= f.label "タイトル" %><br />
+        <%= f.text_field :title, autofocus: true, placeholder: "タイトル" %>
+      </div>
+
+      <div class="articles__new-image">
+        <%= f.label "記事画像" %><br />
+        <%= f.attachment_field :image %>
+      </div>
+
+      <div class="articles__new-text">
+        <%= f.label "本文" %><br />
+        <%= f.text_area :text %>
+      </div>
+
+      <div class="articles__new-category">
+        <div class="articles__new-category-1">
+          <%= f.label "カテゴリー１" %><br />
+          <%= f.collection_select :category_1, Article.category_1s.keys.to_a, include_blanck: true %>
+        </div>
+        <div class="articles__new-category-1">
+          <%= f.label "カテゴリー２" %><br />
+          <%= f.collection_select :category_2, Article.category_1s.keys.to_a, include_blanck: true %>
+        </div>
+        <div class="articles__new-category-1">
+          <%= f.label "カテゴリー３" %><br />
+          <%= f.collection_select :category_3, Article.category_1s.keys.to_a, include_blanck: true %>
+        </div>
+      </div>
+
+      <div class="articles__new-is-active">
+        <%= f.label "配信中 " %>
+        <%= f.radio_button :is_active, true, checked: true %>
+        <%= "　　　　" %>
+        <%= f.label "配信停止 " %>
+        <%= f.radio_button :is_active, false %>
+      </div>
+
+      <div class="articles__new-actions">
+        <%= f.submit "投稿する", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

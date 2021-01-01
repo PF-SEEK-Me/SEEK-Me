@@ -1,0 +1,63 @@
+
+<!--css => app/assets/stylesheets/admins/articles.scss-->
+
+<div class="articles">
+  <h3 class="articles__title">記事を投稿する</h3>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <%= render "admins/articles/genres-list.html.erb", @genre => "##" %>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="articles__new">
+          <%= form_with model: @article, local: true do |f| %>
+            <div class="articles__new-form">
+              <%= f.label "タイトル" %><br />
+              <%= f.text_field :title, autofocus: true, placeholder: "タイトル" %>
+            </div>
+
+            <div class="articles__new-form">
+              <%= f.label "記事画像" %><br />
+              <%= attachment_image_tag @article, :image %>
+              <%= f.attachment_field :image %>
+            </div>
+
+            <div class="articles__new-form">
+              <%= f.label "本文" %><br />
+              <%= f.text_area :text, style: "width: 700px; height: 200px;" %>
+            </div>
+
+            <div class="articles__new-form">
+              <div class="articles__new-form--category">
+                <%= f.label "カテゴリー１" %>
+                <%= f.select :category_1, Article.category_1s.keys.to_a, include_blank: true %>
+              </div>
+              <div class="articles__new-form--category">
+                <%= f.label "カテゴリー２" %>
+                <%= f.select :category_2, Article.category_1s.keys.to_a, include_blank: true %>
+              </div>
+              <div class="articles__new-form--category">
+                <%= f.label "カテゴリー３" %>
+                <%= f.select :category_3, Article.category_1s.keys.to_a, include_blank: true %>
+              </div>
+            </div>
+
+            <div class="articles__new-form">
+              <%= f.label "配信中 " %>
+              <%= f.radio_button :is_active, true, checked: true %>
+              <%= "　　　　" %>
+              <%= f.label "配信停止 " %>
+              <%= f.radio_button :is_active, false %>
+            </div>
+
+            <div class="articles__new-actions">
+              <%= f.submit "投稿する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

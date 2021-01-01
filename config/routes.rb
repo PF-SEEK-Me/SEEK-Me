@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   }
 
   scope module: :admins do
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres,   only: [:index, :create, :edit, :update]
+    resources :articles, only: [:index, :new, :create, :show, :edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
