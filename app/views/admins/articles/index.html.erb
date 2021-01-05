@@ -1,0 +1,72 @@
+
+<!--css => app/assets/stylesheets/admins/articles.scss-->
+
+<div class="articles">
+  <h3 class="articles__title">記事一覧</h3>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <%= render "admins/articles/genres-list.html.erb", genre: @genre %>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="articles__search">
+          <%= form_tag(articles_path, method: :get) do %>
+            <%= "記事検索" %>
+            <%= text_field_tag :title, "", placeholder: "タイトル検索" %>
+            <%= submit_tag "検索", class: "btn btn-sm btn-primary" %>
+          <% end %>
+        </div>
+
+        <div class="articles__create">
+          <%= link_to new_article_path do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </div>
+
+        <div class="articles__table-index">
+          <table class="table table-hover">
+            <tr>
+              <th>タイトル</th>
+              <th>配信日</th>
+              <th>ジャンル</th>
+              <th>カテゴリー</th>
+              <th>閲覧数</th>
+              <th>いいね数（率）</th>
+              <th>ステータス</th>
+              <th></th>
+            </tr>
+
+            <% @articles.each do |article| %>
+              <tr>
+                <td><%= article.title %></td>
+                <td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= article.genre.name %></td>
+                <td>
+                  <%= article.category_1 %><br />
+                  <%= article.category_2 %><br />
+                  <%= article.category_3 %>
+                </td>
+                <td><%= "###" %></td>
+                <td><%= "###" %><%= "($$$%)" %></td>
+                <td>
+                  <% if article.is_active == true %>
+                    <%= "配信中" %>
+                  <% else %>
+                    <%= "配信停止" %>
+                  <% end %>
+                </td>
+                <td><%= link_to "詳細を見る", article_path(article.id), class: "btn btn-primary" %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+
+        <div class="articles__paginate">
+          <%= paginate @articles %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

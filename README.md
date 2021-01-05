@@ -1,24 +1,45 @@
-# README
+# タイトル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- SEEK Me!
 
-Things you may want to cover:
+## サイト概要
 
-* Ruby version
+- アプリケーションの種類：ニュースアプリ
+- 詳細①：日々ニュースを読んだ履歴からユーザーの興味を収集し、フィードバックする。
+- 詳細②：読んだニュースから具体的な行動につなげられるような仕組みにする。
 
-* System dependencies
+### サイトテーマ
 
-* Configuration
+- ユーザーが自分自身を知り、具体的な行動につなげられるようにすること。
 
-* Database creation
+### テーマを選んだ理由
 
-* Database initialization
+- 自分自身に興味を持ち、もっと自分のことを知ってほしいから。
+- 普段、インプットする機会は多いが、アウトプットする機会が少ないので、アウトプットする機会につなげてほしいから。
+- 自分に合ったトライ＆エラーを繰り返し、自分自身が望む人生を進んでほしいから。
 
-* How to run the test suite
+### ターゲットユーザ
 
-* Services (job queues, cache servers, search engines, etc.)
+- 大学生
 
-* Deployment instructions
+### 主な利用シーン
 
-* ...
+- 日常
+
+## 設計書
+
+### 機能一覧
+
+＜スプレッドシートのLink＞
+
+## 開発環境
+
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- 仮想環境：Vagrant,VirtualBox
+
+## 使用素材
+
+- PAKUTASO<https://www.pakutaso.com/>
