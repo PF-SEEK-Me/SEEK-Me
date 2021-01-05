@@ -1,9 +1,12 @@
 class Admins::ArticlesController < ApplicationController
   def index
     @genres = Genre.where(is_active: true)
-    @articles = Article.order(created_at: :desc).page(params[:page]).per(15)
-    #title検索による記事絞り込み検索
-    @articles_search = Article.where("title LIKE ?", "%#{params[:keyword]}%" )
+    if self.params[:title]
+      #title検索による記事絞り込み検索
+      @articles = Article.where("title LIKE ?", "%#{params[:title]}%").order(created_at: :desc).page(params[:page]).per(15)
+    else
+      @articles = Article.order(created_at: :desc).page(params[:page]).per(15)
+    end
   end
 
   def new
@@ -15,8 +18,9 @@ class Admins::ArticlesController < ApplicationController
     article = Article.new(article_params)
     if article.save
       redirect_to articles_path
+    else
+      render :new
     end
-    render :new
   end
 
   def show
@@ -31,8 +35,9 @@ class Admins::ArticlesController < ApplicationController
     article = Article.find(params[:id])
     if article.update(article_params)
       redirect_to article_path(article)
+    else
+      render :edit
     end
-    render :edit
   end
 
   private

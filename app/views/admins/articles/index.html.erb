@@ -12,10 +12,16 @@
 
       <div class="col-sm-9">
         <div class="articles__search">
-          <%= form_with model: @article, local: true do |f| %>
-            <%= f.label "記事検索" %>
-            <%= f.text_field :title, placeholder: "タイトル" %>
-            <%= f.submit "検索", class: "btn btn-sm btn-primary" %>
+          <%= form_tag(articles_path, method: :get) do %>
+            <%= "記事検索" %>
+            <%= text_field_tag :title, "", placeholder: "タイトル検索" %>
+            <%= submit_tag "検索", class: "btn btn-sm btn-primary" %>
+          <% end %>
+        </div>
+
+        <div class="articles__create">
+          <%= link_to new_article_path do %>
+            <i class="fas fa-edit"></i>
           <% end %>
         </div>
 
@@ -24,6 +30,7 @@
             <tr>
               <th>タイトル</th>
               <th>配信日</th>
+              <th>ジャンル</th>
               <th>カテゴリー</th>
               <th>閲覧数</th>
               <th>いいね数（率）</th>
@@ -34,7 +41,8 @@
             <% @articles.each do |article| %>
               <tr>
                 <td><%= article.title %></td>
-                <td><%= article.created_at %></td>
+                <td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= article.genre.name %></td>
                 <td>
                   <%= article.category_1 %><br />
                   <%= article.category_2 %><br />
@@ -49,7 +57,7 @@
                     <%= "配信停止" %>
                   <% end %>
                 </td>
-                <td><%= link_to "編集する", article_path(article.id) %></td>
+                <td><%= link_to "詳細を見る", article_path(article.id), class: "btn btn-primary" %></td>
               </tr>
             <% end %>
           </table>

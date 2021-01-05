@@ -1,0 +1,64 @@
+
+<!--css => app/assets/stylesheets/admins/articles.scss-->
+
+<div class="articles">
+  <h3 class="articles__title">投稿イメージ</h3>
+
+  <div class="articles__show">
+    <div class="articles__show-form articles__show-form-title">
+      <%= @article.title %>
+    </div>
+
+    <div class="articles__show-form">
+      <%= "配信日 " %>
+      <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %>
+      <% if @article.created_at != @article.updated_at %>
+        <%= " || " %>
+        <%= "更新日 " %>
+        <%= @article.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <% end %>
+    </div>
+
+    <div class="articles__show-form articles__show-form-category">
+      <div class="articles__show-form-category--1">
+        <%= @article.category_1 %>
+      </div>
+      <% if @article.category_2 != nil %>
+        <div class="articles__show-form-category--1">
+          <%= @article.category_2 %>
+        </div>
+      <% end %>
+      <% if @article.category_3 != nil %>
+        <div class="articles__show-form-category--1">
+          <%= @article.category_3 %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="articles__show-form">
+      <%= attachment_image_tag @article, :image, size: "640x350" %>
+    </div>
+
+    <div class="articles__show-form">
+      <%= @article.text %>
+    </div>
+
+    <div class="articles__show-form">
+      ----------（以下、ユーザー画面には表示されません）----------
+    </div>
+
+    <div class="articles__show-form articles__show-form-label">
+      <div class="articles__show-form-status">ステータス</div>
+      <% if @article.is_active == true %>
+        <%= "配信中" %>
+      <% else %>
+        <%= "配信停止" %>
+      <% end %>
+    </div>
+
+    <div class="articles__show-actions">
+      <%= link_to "記事を編集する", edit_article_path(@article.id), class: "btn btn-primary" %>
+      <span><%= link_to "記事一覧へ戻る", articles_path, class: "btn btn-warning" %></span>
+    </div>
+  </div>
+</div>

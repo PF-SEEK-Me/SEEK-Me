@@ -4,6 +4,7 @@
 
 
 .articles {
+  width: 90%;
   margin: 50px auto;
 
   /*index*/
@@ -16,12 +17,70 @@
     margin-bottom: 20px;
   }
 
-  &__new-form {
-    margin-bottom: 20px;
+  &__create {
+    font-size: 30px;
+    text-align: right
+  }
 
-    &--category {
-      margin-bottom: 10px;
+  /*new*/
+  &__new-form {
+    margin-bottom: 30px;
+  }
+
+  &__new-form-category {
+    display: flex;
+
+    &--1 {
+      margin-right: 50px;
     }
   }
 
+  /*edit*/
+  &__edit {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  &__edit-form {
+    margin-bottom: 30px;
+  }
+
+  &__edit-form-category {
+    display: flex;
+
+    &--1 {
+      margin-right: 50px;
+    }
+  }
+
+  /*show*/
+  &__show {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__show-form {
+    margin-bottom: 30px;
+  }
+
+  &__show-form-title {
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  &__show-form-category {
+    display: flex;
+
+    &--1 {
+      border: 1px solid #000;
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-right: 10px;
+      background-color: #A9E49C;
+    }
+  }
+
+  &__show-form-status {
+    font-weight: bold;
+  }
 }
