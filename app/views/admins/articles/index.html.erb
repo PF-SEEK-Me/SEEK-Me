@@ -6,13 +6,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
-        <%= render "admins/articles/genres-list.html.erb", genre: @genre %>
+      <div class="col-sm-2">
+        <%= render "admins/articles/sidebar.html.erb", genres: @genres %>
       </div>
 
-      <div class="col-sm-9">
+      <div class="col-sm-10">
         <div class="articles__search">
-          <%= form_tag(articles_path, method: :get) do %>
+          <%= form_tag(admins_articles_path, method: :get) do %>
             <%= "記事検索" %>
             <%= text_field_tag :title, "", placeholder: "タイトル検索" %>
             <%= submit_tag "検索", class: "btn btn-sm btn-primary" %>
@@ -20,22 +20,22 @@
         </div>
 
         <div class="articles__create">
-          <%= link_to new_article_path do %>
+          <%= link_to new_admins_article_path do %>
             <i class="fas fa-edit"></i>
           <% end %>
         </div>
 
-        <div class="articles__table-index">
+        <div class="articles__index-table">
           <table class="table table-hover">
-            <tr>
-              <th>タイトル</th>
-              <th>配信日</th>
-              <th>ジャンル</th>
-              <th>カテゴリー</th>
-              <th>閲覧数</th>
-              <th>いいね数（率）</th>
-              <th>ステータス</th>
-              <th></th>
+            <tr class="articles__index-table-header">
+              <th class="articles__index-table-header--item-1">タイトル</th>
+              <th class="articles__index-table-header--item-2">配信日</th>
+              <th class="articles__index-table-header--item-2">ジャンル</th>
+              <th class="articles__index-table-header--item-2">カテゴリー</th>
+              <th class="articles__index-table-header--item-2">閲覧数</th>
+              <th class="articles__index-table-header--item-2">いいね数(率)</th>
+              <th class="articles__index-table-header--item-2">ステータス</th>
+              <th class="articles__index-table-header--item-3"></th>
             </tr>
 
             <% @articles.each do |article| %>
@@ -57,7 +57,7 @@
                     <%= "配信停止" %>
                   <% end %>
                 </td>
-                <td><%= link_to "詳細を見る", article_path(article.id), class: "btn btn-primary" %></td>
+                <td><%= link_to "詳細を見る", admins_article_path(article.id), class: "btn btn-sm btn-primary" %></td>
               </tr>
             <% end %>
           </table>

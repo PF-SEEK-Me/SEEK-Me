@@ -5,7 +5,7 @@
   <h3>ジャンル登録・一覧</h3>
 
   <div class="genres__new">
-    <%= form_with model: @genre, local: true do |f| %>
+    <%= form_with model: @genre, url: admins_genres_path, method: :post, local: true do |f| %>
       <div class="genres__new-main">
         <div class="genres__new-main-name">
           <%= f.label "ジャンル" %>
@@ -36,15 +36,18 @@
       <% @genres.each do |genre| %>
         <tr>
           <td><%= genre.name %></td>
-          <td><%= "###" %><%= " 本" %></td>
+          <td><%= link_to admins_articles_path(genre_article: genre.id) do %>
+                <%= Article.where(genre_id: genre.id, is_active: true).count %>
+              <% end %>
+              <%= " 本" %></td>
           <td>
-            <% if genre.is_active == true%>
+            <% if genre.is_active == true %>
               <%= "配信中" %>
             <% else %>
               <%= "配信停止" %>
             <% end %>
           </td>
-          <td><%= link_to "編集する", edit_genre_path(genre.id), class: "btn btn-primary" %></td>
+          <td><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn btn-primary" %></td>
         </tr>
       <% end %>
     </table>

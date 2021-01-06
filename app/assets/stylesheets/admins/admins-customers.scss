@@ -1,0 +1,31 @@
+.admins-customers {
+
+  &__title {
+    margin-bottom: 30px;
+    margin-left: 5%;
+  }
+
+  /*index*/
+  &__index {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__index-table-header {
+    background-color: #80D789;
+  }
+
+  &__search {
+    margin-bottom: 20px;
+  }
+
+  /*show*/
+  &__show {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  &__show-button {
+    text-align: right
+  }
+}
