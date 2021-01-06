@@ -1,0 +1,70 @@
+
+<!--css => app/assets/stylesheets/admins/admins-customers.scss-->
+
+<div class="admins-customers">
+  <h3 class="admins-customers__title">会員詳細</h3>
+
+  <div class="admins-customers__show">
+    <table class="table table-hover">
+      <tr>
+        <th>姓　名</th>
+        <td><%= @customer.last_name + "　" + @customer.first_name %></td>
+      </tr>
+      <tr>
+        <th>セイ　メイ</th>
+        <td><%= @customer.last_name_kana + "　" + @customer.first_name_kana %></td>
+      </tr>
+      <tr>
+        <th>性別</th>
+        <td><%= @customer.gender %></td>
+      </tr>
+      <tr>
+        <th>年齢</th>
+        <td><%= @customer.age %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= @customer.postal_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr>
+        <th>カテゴリー</th>
+        <td>
+          <% if @customer.is_student == true %>
+            <%= "学生" %>
+          <% else %>
+            <%= "社会人" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>ステータス</th>
+        <td>
+          <% if @customer.is_active == true %>
+            <%= "有効会員" %>
+          <% else %>
+            <%= "退会者" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>登録日</th>
+        <td><%= @customer.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    </table>
+    <div class="admins-customers__show-button">
+      <%= link_to "戻る", admins_customers_path, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>

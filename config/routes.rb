@@ -5,15 +5,19 @@ Rails.application.routes.draw do
     passwords: "admins/passwords"
   }
 
+  root "admins/articles#index"
+
   devise_for :customers, controllers: {
     sessions: "customers/sessions",
     registrations: "customers/registrations",
     passwords: "customers/passwords"
   }
 
-  scope module: :admins do
+  namespace :admins do
     resources :genres,   only: [:index, :create, :edit, :update]
     resources :articles, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show]
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

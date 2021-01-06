@@ -1,0 +1,58 @@
+
+<!--css => app/assets/stylesheets/admins/admins-customers.scss-->
+
+<div class="admins-customers">
+  <h3 class="admins-customers__title">会員一覧</h3>
+
+  <div class="admins-customers__index">
+    <div class="admins-customers__search">
+      <%= form_tag(admins_customers_path, method: :get) do %>
+        <%= "会員検索" %>
+        <%= text_field_tag :last_name, "", placeholder: "氏名（姓）検索" %>
+        <%= submit_tag "検索", class: "btn btn-sm btn-primary" %>
+      <% end %>
+    </div>
+
+    <div class="admins-customers__index-table">
+      <table class="table table-hover">
+        <tr class="admins-customers__index-table-header">
+          <th>氏名</th>
+          <th>性別</th>
+          <th>年齢</th>
+          <th>カテゴリー</th>
+          <th>ステータス</th>
+          <th>登録日</th>
+          <th></th>
+        </tr>
+
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.last_name + customer.first_name %></td>
+            <td><%= customer.gender %></td>
+            <td><%= customer.age %></td>
+            <td>
+              <% if customer.is_student == true %>
+                <%= "学生" %>
+              <% else %>
+                <%= "社会人" %>
+              <% end %>
+            </td>
+            <td>
+              <% if customer.is_active == true %>
+                <%= "有効会員" %>
+              <% else %>
+                <%= "退会者" %>
+              <% end %>
+            </td>
+            <td><%= customer.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td><%= link_to "詳細を見る", admins_customer_path(customer.id), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="admins-customers__paginate">
+      <%= paginate @customers %>
+    </div>
+  </div>
+</div>

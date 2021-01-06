@@ -5,7 +5,7 @@
   <h3 class="articles__title">投稿記事を編集する</h3>
 
   <div class="articles__edit">
-    <%= form_with model: @article, local: true do |f| %>
+    <%= form_with model: @article, url: admins_article_path, method: :patch, local: true do |f| %>
       <div class="articles__edit-form">
         <%= f.label "タイトル" %><br />
         <%= f.text_field :title, autofocus: true, style: "width: 600px;" %>
