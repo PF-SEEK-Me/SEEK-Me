@@ -5,4 +5,9 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum gender: {"男性": 0, "女性": 1}
+
+  #有効会員のみログインできるように設定する
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
 end

@@ -1,0 +1,58 @@
+
+<!--css => app/assets/stylesheets/customers/customers-articles.scss-->
+
+<div class="customers-articles">
+  <h3 class="customers-articles__title">記事一覧</h3>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= render "customers/articles/sidebar.html.erb", genres: @genres %>
+      </div>
+
+      <div class="col-sm-10">
+        <div class="customers-articles__search">
+          <%= form_tag(articles_path, method: :get) do %>
+            <%= "記事検索" %>
+            <%= text_field_tag :title, "", placeholder: "タイトル検索" %>
+            <%= submit_tag "検索", class: "btn btn-sm btn-primary" %>
+          <% end %>
+        </div>
+
+        <div class="customers-articles__index-table">
+          <table class="table table-hover">
+            <tr class="customers-articles__index-table-header">
+              <th class="customers-articles__index-table-header--item-1">タイトル</th>
+              <th class="customers-articles__index-table-header--item-2">配信日</th>
+              <th class="customers-articles__index-table-header--item-2">ジャンル</th>
+              <th class="customers-articles__index-table-header--item-2">カテゴリー</th>
+              <th class="customers-articles__index-table-header--item-2">閲覧数</th>
+              <th class="customers-articles__index-table-header--item-2">いいね数(率)</th>
+              <th class="customers-articles__index-table-header--item-3"></th>
+            </tr>
+
+            <% @articles.each do |article| %>
+              <tr>
+                <td><%= article.title %></td>
+                <td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= article.genre.name %></td>
+                <td>
+                  <%= article.category_1 %><br />
+                  <%= article.category_2 %><br />
+                  <%= article.category_3 %>
+                </td>
+                <td><%= "###" %></td>
+                <td><%= "###" %><%= "($$$%)" %></td>
+                <td><%= link_to "記事を見る", article_path(article.id), class: "btn btn-sm btn-primary" %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+
+        <div class="customers-articles__paginate">
+          <%= paginate @articles %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

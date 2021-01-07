@@ -1,0 +1,76 @@
+// Place all the styles related to the customers/customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.customers {
+  width: 90%;
+  margin: 0 auto;
+
+  &__title {
+    margin-bottom: 30px;
+    margin-left: 5%;
+  }
+
+  /*show*/
+  &__show {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  &__show-button {
+    text-align: right;
+    margin-bottom: 30px;
+
+    &--hide {
+      margin-left: 30px;
+    }
+  }
+
+  /*edit*/
+  &__edit {
+    width: 700px;
+    margin: 0 auto;
+  }
+
+  &__edit-actions {
+    display: flex;
+    width: 310px;
+    margin-left: auto;
+    margin-bottom: 30px;
+
+    &--submit {
+      margin-right: 50px;
+    }
+
+    &--back {
+    }
+  }
+
+  /*confirm*/
+  &__confirm {
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__confirm-title {
+    font-weight: bold;
+  }
+
+  &__confirm-title {
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+
+  &__confirm-action {
+    margin-bottom: 100px;
+
+    &--hide {
+    margin-left: 20px;
+    }
+
+  }
+
+}

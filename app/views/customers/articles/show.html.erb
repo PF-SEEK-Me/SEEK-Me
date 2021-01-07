@@ -1,0 +1,48 @@
+
+<!--css => app/assets/stylesheets/customers/customer-articles.scss-->
+
+<div class="customers-articles">
+  <div class="customers-articles__show">
+    <div class="customers-articles__show-form customers-articles__show-form-title">
+      <%= @article.title %>
+    </div>
+
+    <div class="customers-articles__show-form">
+      <%= "配信日 " %>
+      <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %>
+      <% if @article.created_at != @article.updated_at %>
+        <%= " || " %>
+        <%= "更新日 " %>
+        <%= @article.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <% end %>
+    </div>
+
+    <div class="customers-articles__show-form customers-articles__show-form-category">
+      <div class="customers-articles__show-form-category--1">
+        <%= @article.category_1 %>
+      </div>
+      <% if @article.category_2 != nil %>
+        <div class="customers-articles__show-form-category--1">
+          <%= @article.category_2 %>
+        </div>
+      <% end %>
+      <% if @article.category_3 != nil %>
+        <div class="customers-articles__show-form-category--1">
+          <%= @article.category_3 %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="customers-articles__show-form">
+      <%= attachment_image_tag @article, :image, size: "640x350" %>
+    </div>
+
+    <div class="customers-articles__show-form">
+      <%= @article.text %>
+    </div>
+
+    <div class="customers-articles__show-actions">
+      <%= link_to "記事一覧へ戻る", articles_path, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>

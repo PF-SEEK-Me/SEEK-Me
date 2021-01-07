@@ -2,11 +2,15 @@
   width: 500px;
   margin: 80px auto;
 
-  &__email-field {
-    margin-bottom: 35px;
+  &__error {
+    color: red;
   }
 
-  &__password-field {
+  &__notice {
+    color: red;
+  }
+
+  &__form {
     margin-bottom: 35px;
   }
 

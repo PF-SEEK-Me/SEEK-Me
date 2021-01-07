@@ -7,7 +7,7 @@
   <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
     <div class="container">
       <div class="row">
-        <div class="sign-in__email-field">
+        <div class="sign-in__form">
           <div class="col-sm-2">
             <%= f.label "メールアドレス" %>
           </div>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="row">
-        <div class="sign-in__password-field">
+        <div class="sign-in__form">
           <div class="col-sm-2">
             <%= f.label "パスワード" %>
           </div>
@@ -30,7 +30,7 @@
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="sign-in__remember-field">
+      <div class="sign-in__form">
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me %>
       </div>

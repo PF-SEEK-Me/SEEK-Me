@@ -1,33 +1,33 @@
 
-<!--css => app/assets/stylesheets/admins/articles.scss-->
+<!--css => app/assets/stylesheets/admins/admins-articles.scss-->
 
-<div class="articles">
-  <h3 class="articles__title">投稿記事を編集する</h3>
+<div class="admins-articles">
+  <h3 class="admins-articles__title">投稿記事を編集する</h3>
 
-  <div class="articles__edit">
+  <div class="admins-articles__edit">
     <%= form_with model: @article, url: admins_article_path, method: :patch, local: true do |f| %>
-      <div class="articles__edit-form">
+      <div class="admins-articles__edit-form">
         <%= f.label "タイトル" %><br />
         <%= f.text_field :title, autofocus: true, style: "width: 600px;" %>
       </div>
 
-      <div class="articles__edit-form">
+      <div class="admins-articles__edit-form">
         <%= f.label "記事画像" %><br />
         <%= attachment_image_tag @article, :image %><br />
         <%= f.attachment_field :image %>
       </div>
 
-      <div class="articles__edit-form">
+      <div class="admins-articles__edit-form">
         <%= f.label "記事本文" %><br />
         <%= f.text_area :text, style: "width: 600px; height: 200px;" %>
       </div>
 
-      <div class="articles__edit-form articles__edit-form-category">
-        <div class="articles__edit-form-category--1">
+      <div class="admins-articles__edit-form admins-articles__edit-form-category">
+        <div class="admins-articles__edit-form-category--1">
           <%= f.label "カテゴリー１" %><br />
           <%= f.select :category_1, Article.category_1s.keys.to_a %>
         </div>
-        <div class="articles__edit-form-category--1">
+        <div class="admins-articles__edit-form-category--1">
           <%= f.label "カテゴリー２" %><br />
           <%= f.select :category_2, Article.category_2s.keys.to_a, include_blank: true %>
         </div>
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="articles__edit-form">
+      <div class="admins-articles__edit-form">
         <%= f.label "配信中 " %>
         <%= f.radio_button :is_active, true, checked: true %>
         <%= "　　　　" %>
@@ -45,7 +45,7 @@
         <%= f.radio_button :is_active, false %>
       </div>
 
-      <div class="articles__edit-actions">
+      <div class="admins-articles__edit-actions">
         <%= f.submit "変更を保存する", class: "btn btn-primary" %>
       </div>
     <% end %>
