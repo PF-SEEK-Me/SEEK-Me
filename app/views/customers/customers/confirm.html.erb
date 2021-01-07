@@ -1,0 +1,16 @@
+<!--css => app/assets/stylesheets/customers/customers.scss-->
+
+<div class="customers">
+  <div class="customers__confirm">
+    <h3 class="customers__confirm-title">本当に退会しますか？</h3>
+
+    <div class="customers__confirm-action">
+      <%= link_to "退会しない", customer_path, class: "btn btn-warning" %>
+      <span class="customers__confirm-action--hide">
+        <% if customer_signed_in? %>
+          <%= link_to "退会する", hide_customer_path, method: :put, class: "btn btn-danger" %>
+        <% end %>
+      </span>
+    </div>
+</div>
+</div>
