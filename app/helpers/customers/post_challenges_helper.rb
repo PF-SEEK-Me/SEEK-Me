@@ -1,0 +1,2 @@
+module Customers::PostChallengesHelper
+end

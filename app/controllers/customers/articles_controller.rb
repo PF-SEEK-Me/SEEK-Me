@@ -26,5 +26,8 @@ class Customers::ArticlesController < ApplicationController
         @browsing_history.save
       end
     end
+
+    #コメント投稿
+    @post_challenge = PostChallenge.new
   end
 end

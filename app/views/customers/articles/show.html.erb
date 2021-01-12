@@ -15,6 +15,8 @@
         <%= "更新日 " %>
         <%= @article.updated_at.strftime("%Y-%m-%d %H:%M") %>
       <% end %>
+      <%= " || " %>
+      <%= @article.post_challenges.count.to_s(:delimited) %>件のチャレンジ
     </div>
 
     <div class="customers-articles__show-form customers-articles__show-form-category">
@@ -47,12 +49,60 @@
       </div>
     </div>
 
-    <div class="customers-articles__show-form">
-      <%= attachment_image_tag @article, :image, size: "640x350" %>
-    </div>
+    <div class="customers-articles__show-contents">
+      <div class="customers-articles__show-form">
+        <%= attachment_image_tag @article, :image, size: "640x350" %>
+      </div>
 
-    <div class="customers-articles__show-form">
-      <%= @article.text %>
+      <div class="customers-articles__show-form">
+        <%= @article.text %>
+      </div>
+
+      <div class="customers-articles__post-challenge">
+        <div class="customers-articles__post-challenge-title">チャレンジしたことを投稿しよう！</div>
+
+        <%= form_with(model: [@article, @post_challenge], local: true) do |f| %>
+          <div class="customers-articles__post-challenge-form">
+            <div class="customers-articles__post-challenge-form--item">
+              <%= f.label "画像投稿" %><br />
+              <%= f.attachment_field :image %>
+            </div>
+            <div class="customers-articles__post-challenge-form--item">
+              <%= f.label "チャレンジ" %><br />
+              <%= f.text_area :comment, placeholder: "チャレンジしたこと", style: "width: 300px; height: 50px;" %>
+            </div>
+            <div class="customers-articles__post-challenge-form--item">
+              <%= f.submit "チャレンジ投稿", class: "btn btn-sm btn-success" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="customers-articles__post-challenges">
+        <div class="customers-articles__post-challenges-title">みんなのチャレンジ！</div>
+        <table class="table table-hover">
+          <tr>
+            <th class="customers-articles__post-challenges-table-post">投稿日</th>
+            <th class="customers-articles__post-challenges-table-image">投稿画像</th>
+            <th class="customers-articles__post-challenges-table-challenge">チャレンジ</th>
+            <th class="customers-articles__post-challenges-table-action"></th>
+          </tr>
+          <% @article.post_challenges.each do |post_challenge| %>
+            <tr>
+              <td>
+                <%= post_challenge.created_at.strftime("%Y-%m-%d %H:%M") %>
+              </td>
+              <td><%= attachment_image_tag post_challenge, :image %></td>
+              <td><%= post_challenge.comment %></td>
+              <td>
+                <% if post_challenge.customer == current_customer %>
+                  <%= link_to "削除", article_post_challenge_path(post_challenge.article, post_challenge), method: :delete, class: "btn btn-sm btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
 
     <div class="customers-articles__show-actions">

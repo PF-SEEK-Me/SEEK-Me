@@ -27,10 +27,11 @@
         <tr class="customers__favorite-table-header">
           <th class="customers__favorite-table-header--item-1">タイトル</th>
           <th class="customers__favorite-table-header--item-2">配信日</th>
-          <th class="customers-__favorite-table-header--item-3">ジャンル</th>
-          <th class="customers__favorite-table-header--item-3">カテゴリー</th>
+          <th class="customers-__favorite-table-header--item-2">ジャンル</th>
+          <th class="customers__favorite-table-header--item-2">カテゴリー</th>
           <th class="customers__favorite-table-header--item-2">総閲覧数</th>
-          <th class="customers__favorite-table-header--item-3"></th>
+          <th class="customers__favorite-table-header--item-2">チャレンジ数</th>
+          <th class="customers__favorite-table-header--item-2"></th>
         </tr>
 
         <% @favorites.each do |favorite| %>
@@ -46,6 +47,7 @@
             <td>
               <%= @browsing_histories.where(article_id: favorite.article.id).count.to_s(:delimited) %>
             </td>
+            <td><%= favorite.article.post_challenges.count.to_s(:delimited) %></td>
             <td><%= link_to "記事を見る", article_path(favorite.article), class: "btn btn-sm btn-primary" %></td>
           </tr>
         <% end %>

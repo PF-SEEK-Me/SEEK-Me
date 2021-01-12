@@ -25,8 +25,10 @@ Rails.application.routes.draw do
     get "customer/confirm" => "customers#confirm", as: "confirm_customer"#退会確認ページ
     put "customer/hide" => "customers#hide", as: "hide_customer"#退会処理
     get "customer/favorite" => "customers#favorite", as: "favorite_customer"#SEEK Me!ページ
-    resources :articles, only: [:index, :show] do
-      resource :favorite, only: [:create, :destroy]
+
+    resources :articles,  only: [:index, :show] do
+      resource :favorite,           only: [:create, :destroy]
+      resources :post_challenges,     only: [:create, :destroy]
     end
   end
 

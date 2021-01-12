@@ -45,6 +45,10 @@
     margin: 0 auto;
   }
 
+  &__show-contents {
+    margin-bottom: 30px;
+  }
+
   &__show-form {
     margin-bottom: 30px;
   }
@@ -64,5 +68,39 @@
       margin-right: 10px;
       background-color: #A9E49C;
     }
+  }
+
+  &__post-challenge {
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+
+  &__post-challenge-title {
+    font-weight: bold;
+  }
+
+  &__post-challenge-form {
+    display: flex;
+
+    &--item {
+      margin-right: 20px;
+    }
+  }
+
+  &__post-challenges-title {
+    font-weight: bold;
+  }
+
+  &__post-challenges-table-post {
+    width: 10%;
+  }
+  &__post-challenges-table-image {
+    width: 30%;
+  }
+  &__post-challenges-table-challenge {
+    width: 55%;
+  }
+  &__post-challenges-table-action {
+    width: 5%;
   }
 }
