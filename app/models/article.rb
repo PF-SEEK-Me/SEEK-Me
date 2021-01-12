@@ -1,5 +1,12 @@
 class Article < ApplicationRecord
   belongs_to :genre
+  has_many :browsing_histories, dependent: :destroy
+  has_many :favorites,          dependent: :destroy
+
+  def favorited_by?(customer)
+    favorites.where(customer_id: customer.id).exists?
+  end
+
   attachment :image
 
   validates :genre_id,   presence: true

@@ -31,6 +31,20 @@
           <%= @article.category_3 %>
         </div>
       <% end %>
+
+      <div class="customers-articles__show-form-favorite">
+        <% if @article.favorited_by?(current_customer) %>
+          <%= link_to article_favorite_path(@article), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+            <%= @article.favorites.count %> いいね！
+          <% end %>
+        <% else %>
+          <%= link_to article_favorite_path(@article), method: :post do %>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <%= @article.favorites.count %> いいね！
+          <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div class="customers-articles__show-form">

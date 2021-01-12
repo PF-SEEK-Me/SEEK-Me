@@ -22,9 +22,12 @@ Rails.application.routes.draw do
 
   scope module: :customers do
     resource :customer, only: [:show, :edit, :update]
-    get "confirm/customer" => "customers#confirm"
-    put "hide/customer" => "customers#hide"
-    resources :articles, only: [:index, :show]
+    get "customer/confirm" => "customers#confirm", as: "confirm_customer"#退会確認ページ
+    put "customer/hide" => "customers#hide", as: "hide_customer"#退会処理
+    get "customer/favorite" => "customers#favorite", as: "favorite_customer"#SEEK Me!ページ
+    resources :articles, only: [:index, :show] do
+      resource :favorite, only: [:create, :destroy]
+    end
   end
 
 

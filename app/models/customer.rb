@@ -4,6 +4,9 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :browsing_histories, dependent: :destroy
+  has_many :favorites,          dependent: :destroy
+
   enum gender: {"男性": 0, "女性": 1}
 
   #有効会員のみログインできるように設定する

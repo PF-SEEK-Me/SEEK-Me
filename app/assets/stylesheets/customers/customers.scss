@@ -22,7 +22,7 @@
     text-align: right;
     margin-bottom: 30px;
 
-    &--hide {
+    &--option {
       margin-left: 30px;
     }
   }
@@ -70,7 +70,46 @@
     &--hide {
     margin-left: 20px;
     }
-
   }
 
+  /*favorite*/
+  &__favorite {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__favorite-rank {
+    display: flex;
+    margin-left: 20px;
+    margin-bottom: 50px;
+  }
+
+  &__favorite-rank-item {
+    margin-right: 20px;
+
+    &--label {
+      font-weight: bold;
+    }
+    &--value {
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-right: 10px;
+    background-color: #A9E49C;
+    }
+  }
+
+  &__favorite-table-header {
+    background-color: #80D789;
+
+    &--item-1 {
+      width: 50%;
+    }
+    &--item-2 {
+      width: 10%;
+    }
+    &--item-3 {
+      width: 10%;
+    }
+  }
 }
