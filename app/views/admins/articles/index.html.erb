@@ -48,7 +48,9 @@
                   <%= article.category_2 %><br />
                   <%= article.category_3 %>
                 </td>
-                <td><%= "###" %></td>
+                <td>
+                  <%= @browsing_histories.where(article_id: article.id).count %>
+                </td>
                 <td><%= "###" %><%= "($$$%)" %></td>
                 <td>
                   <% if article.is_active == true %>

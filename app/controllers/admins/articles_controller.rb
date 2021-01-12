@@ -2,6 +2,7 @@ class Admins::ArticlesController < ApplicationController
   def index
     @genres = Genre.where(is_active: true)
 
+    #一覧画面に表示される記事の条件分岐
     if self.params[:title] #title検索による記事絞り込み検索
       @articles = Article.where("title LIKE ?", "%#{params[:title]}%").order(created_at: :desc).page(params[:page]).per(15)
     elsif params[:genre_select] #(sidebar)ジャンルによる記事絞り込み
@@ -11,6 +12,9 @@ class Admins::ArticlesController < ApplicationController
     else
       @articles = Article.order(created_at: :desc).page(params[:page]).per(15)
     end
+
+    #閲覧履歴
+    @browsing_histories = BrowsingHistory.all
   end
 
   def new

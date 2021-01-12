@@ -1,0 +1,59 @@
+
+<!--css => app/assets/stylesheets/customers/customers.scss-->
+
+<div class="customers">
+  <h3 class="customers__title">Seek Me!</h3>
+
+  <div class="customers__favorite">
+    <h4>あなたが大切にしたい価値観　Top 3</h4>
+    <div class="customers__favorite-rank">
+      <div class="customers__favorite-rank-item">
+        <span class="customers__favorite-rank-item--label"><%= "Top 1: " %></span>
+        <span class="customers__favorite-rank-item--value"><%= @values_top_1 %></span>
+      </div>
+      <div class="customers__favorite-rank-item">
+        <span class="customers__favorite-rank-item--label"><%= "Top 2: " %></span>
+        <span class="customers__favorite-rank-item--value"><%= @values_top_2 %></span>
+      </div>
+      <div class="customers__favorite-rank-item">
+        <span class="customers__favorite-rank-item--label"><%= "Top 3: " %></span>
+        <span class="customers__favorite-rank-item--value"><%= @values_top_3 %></span>
+      </div>
+    </div>
+
+    <div class="customers__favorite-table">
+      <h4><%= current_customer.last_name + current_customer.first_name %>　さんがいいね！した記事</h4>
+      <table class="table table-hover">
+        <tr class="customers__favorite-table-header">
+          <th class="customers__favorite-table-header--item-1">タイトル</th>
+          <th class="customers__favorite-table-header--item-2">配信日</th>
+          <th class="customers-__favorite-table-header--item-3">ジャンル</th>
+          <th class="customers__favorite-table-header--item-3">カテゴリー</th>
+          <th class="customers__favorite-table-header--item-2">総閲覧数</th>
+          <th class="customers__favorite-table-header--item-3"></th>
+        </tr>
+
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td><%= favorite.article.title %></td>
+            <td><%= favorite.article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td><%= favorite.article.genre.name %></td>
+            <td>
+              <%= favorite.article.category_1 %><br />
+              <%= favorite.article.category_2 %><br />
+              <%= favorite.article.category_3 %>
+            </td>
+            <td>
+              <%= @browsing_histories.where(article_id: favorite.article.id).count.to_s(:delimited) %>
+            </td>
+            <td><%= link_to "記事を見る", article_path(favorite.article), class: "btn btn-sm btn-primary" %></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="customers__favorite-paginate">
+        <%= paginate @favorites %>
+      </div>
+    </div>
+  </div>
+</div>

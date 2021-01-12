@@ -66,10 +66,12 @@
 
     <div class="customers__show-button">
       <%= link_to "編集する", edit_customer_path, class: "btn btn-warning" %>
-      <span class="customers__show-button--hide">
+      <span class="customers__show-button--option">
         <%= link_to "退会する", confirm_customer_path, class: "btn btn-danger" %>
+      </span>
+      <span class="customers__show-button--option">
+        <%= link_to "SeeK Me!", favorite_customer_path, class: "btn btn-success" %>
       </span>
     </div>
   </div>
-</div>
 </div>

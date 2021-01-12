@@ -26,8 +26,8 @@
               <th class="customers-articles__index-table-header--item-2">配信日</th>
               <th class="customers-articles__index-table-header--item-2">ジャンル</th>
               <th class="customers-articles__index-table-header--item-2">カテゴリー</th>
-              <th class="customers-articles__index-table-header--item-2">閲覧数</th>
-              <th class="customers-articles__index-table-header--item-2">いいね数(率)</th>
+              <th class="customers-articles__index-table-header--item-2">総閲覧数</th>
+              <th class="customers-articles__index-table-header--item-2">いいね!</th>
               <th class="customers-articles__index-table-header--item-3"></th>
             </tr>
 
@@ -41,9 +41,15 @@
                   <%= article.category_2 %><br />
                   <%= article.category_3 %>
                 </td>
-                <td><%= "###" %></td>
-                <td><%= "###" %><%= "($$$%)" %></td>
-                <td><%= link_to "記事を見る", article_path(article.id), class: "btn btn-sm btn-primary" %></td>
+                <td>
+                  <%= @browsing_histories.where(article_id: article.id).count.to_s(:delimited) %>
+                </td>
+                <td>
+                  <% if article.favorited_by?(current_customer) %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>いいね！
+                  <% end %>
+                </td>
+                <td><%= link_to "記事を見る", article_path(article), class: "btn btn-sm btn-primary" %></td>
               </tr>
             <% end %>
           </table>
