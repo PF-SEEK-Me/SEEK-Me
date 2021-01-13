@@ -5,6 +5,7 @@
 
   <%= form_with model: @customer, local: true do |f| %>
     <div class="customers__edit">
+      <div class="customers__edit-error"><%= flash.now[:customer_error] %></div>
       <div class="container">
         <div class="row">
           <div class="customers-sign-up__field">

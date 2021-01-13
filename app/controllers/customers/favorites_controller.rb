@@ -1,4 +1,5 @@
 class Customers::FavoritesController < ApplicationController
+
   def create
     article = Article.find(params[:article_id])
 

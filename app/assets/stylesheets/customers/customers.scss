@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 .customers {
   width: 90%;
   margin: 0 auto;
@@ -18,6 +19,10 @@
     margin: 0 auto;
   }
 
+  &__show-update {
+    color: red;
+  }
+
   &__show-button {
     text-align: right;
     margin-bottom: 30px;
@@ -31,6 +36,10 @@
   &__edit {
     width: 700px;
     margin: 0 auto;
+  }
+
+  &__edit-error {
+    color: red;
   }
 
   &__edit-actions {
@@ -84,6 +93,10 @@
     margin-bottom: 50px;
   }
 
+  &__favorite-rank-non {
+    color: red;
+  }
+
   &__favorite-rank-item {
     margin-right: 20px;
 
@@ -103,10 +116,18 @@
     background-color: #80D789;
 
     &--item-1 {
-      width: 40%;
+      width: 35%;
     }
     &--item-2 {
       width: 10%;
     }
+    &--item-3 {
+      width: 15%;
+    }
   }
+}
+
+/*valination error*/
+.field_with_errors {
+  display: contents;
 }

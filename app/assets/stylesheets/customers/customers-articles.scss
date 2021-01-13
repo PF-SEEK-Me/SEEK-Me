@@ -43,6 +43,14 @@
   &__show {
     width: 80%;
     margin: 0 auto;
+
+    &--non-customer {
+      color: red;
+    }
+  }
+
+  &__error {
+    color: red;
   }
 
   &__show-contents {
@@ -56,6 +64,11 @@
   &__show-form-title {
     font-weight: bold;
     font-size: 25px;
+  }
+
+  &__show-image {
+    width: 650px;
+    margin: 0 auto 30px auto;
   }
 
   &__show-form-category {
@@ -91,14 +104,17 @@
     font-weight: bold;
   }
 
-  &__post-challenges-table-post {
-    width: 10%;
+  &__post-challenges-table-poster {
+    width: 15%;
+  }
+  &__post-challenges-table-day {
+    width: 15%;
   }
   &__post-challenges-table-image {
-    width: 30%;
+    width: 15%;
   }
   &__post-challenges-table-challenge {
-    width: 55%;
+    width: 50%;
   }
   &__post-challenges-table-action {
     width: 5%;
