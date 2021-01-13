@@ -34,23 +34,29 @@
         </div>
       <% end %>
 
-      <div class="customers-articles__show-form-favorite">
-        <% if @article.favorited_by?(current_customer) %>
-          <%= link_to article_favorite_path(@article), method: :delete do %>
-            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-            <%= @article.favorites.count %> いいね！
+      <% if customer_signed_in? %>
+        <div class="customers-articles__show-form-favorite">
+          <% if @article.favorited_by?(current_customer) %>
+            <%= link_to article_favorite_path(@article), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= @article.favorites.count %> いいね！
+            <% end %>
+          <% else %>
+            <%= link_to article_favorite_path(@article), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @article.favorites.count %> いいね！
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to article_favorite_path(@article), method: :post do %>
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <%= @article.favorites.count %> いいね！
-          <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+        <div class="customers-articles__show--non-customer">
+          <%= "**会員登録すると、「いいね！」機能が使えるようになります！**" %>
+        </div>
+      <% end %>
     </div>
 
     <div class="customers-articles__show-contents">
-      <div class="customers-articles__show-form">
+      <div class="customers-articles__show-form customers-articles__show-image">
         <%= attachment_image_tag @article, :image, size: "640x350" %>
       </div>
 
@@ -60,20 +66,27 @@
 
       <div class="customers-articles__post-challenge">
         <div class="customers-articles__post-challenge-title">チャレンジしたことを投稿しよう！</div>
+        <div class="customers-articles__error"><%= flash[:post_challange_error] %></div>
 
-        <%= form_with(model: [@article, @post_challenge], local: true) do |f| %>
-          <div class="customers-articles__post-challenge-form">
-            <div class="customers-articles__post-challenge-form--item">
-              <%= f.label "画像投稿" %><br />
-              <%= f.attachment_field :image %>
+        <% if customer_signed_in? %>
+          <%= form_with(model: [@article, @post_challenge], local: true) do |f| %>
+            <div class="customers-articles__post-challenge-form">
+              <div class="customers-articles__post-challenge-form--item">
+                <%= f.label "画像投稿" %><br />
+                <%= f.attachment_field :image %>
+              </div>
+              <div class="customers-articles__post-challenge-form--item">
+                <%= f.label "チャレンジ" %><br />
+                <%= f.text_area :comment, placeholder: "チャレンジしたこと", style: "width: 300px; height: 50px;" %>
+              </div>
+              <div class="customers-articles__post-challenge-form--item">
+                <%= f.submit "チャレンジ投稿", class: "btn btn-sm btn-success" %>
+              </div>
             </div>
-            <div class="customers-articles__post-challenge-form--item">
-              <%= f.label "チャレンジ" %><br />
-              <%= f.text_area :comment, placeholder: "チャレンジしたこと", style: "width: 300px; height: 50px;" %>
-            </div>
-            <div class="customers-articles__post-challenge-form--item">
-              <%= f.submit "チャレンジ投稿", class: "btn btn-sm btn-success" %>
-            </div>
+          <% end %>
+        <% else %>
+          <div class="customers-articles__show--non-customer">
+            <%= "**会員登録すると、あなたのチャレンジを投稿できるようになります！**" %>
           </div>
         <% end %>
       </div>
@@ -82,13 +95,15 @@
         <div class="customers-articles__post-challenges-title">みんなのチャレンジ！</div>
         <table class="table table-hover">
           <tr>
-            <th class="customers-articles__post-challenges-table-post">投稿日</th>
+            <th class="customers-articles__post-challenges-table-poster">投稿者</th>
+            <th class="customers-articles__post-challenges-table-day">投稿日</th>
             <th class="customers-articles__post-challenges-table-image">投稿画像</th>
             <th class="customers-articles__post-challenges-table-challenge">チャレンジ</th>
             <th class="customers-articles__post-challenges-table-action"></th>
           </tr>
           <% @article.post_challenges.each do |post_challenge| %>
             <tr>
+              <td><%= post_challenge.customer.last_name + post_challenge.customer.first_name %></td>
               <td>
                 <%= post_challenge.created_at.strftime("%Y-%m-%d %H:%M") %>
               </td>

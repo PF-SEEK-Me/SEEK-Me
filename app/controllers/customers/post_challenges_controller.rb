@@ -4,8 +4,12 @@ class Customers::PostChallengesController < ApplicationController
 
     post_challenge = current_customer.post_challenges.new(post_challenge_params)
     post_challenge.article_id = article.id
-    post_challenge.save
-    redirect_to article_path(article)
+    if post_challenge.save
+      redirect_to article_path(article)
+    else
+      redirect_to article_path(article)
+      flash[:post_challange_error] = "**（入力必須）コメントを入力してください。**"
+    end
   end
 
   def destroy
