@@ -7,12 +7,17 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
-        <%= render "admins/articles/sidebar.html.erb", genre: @genre %>
+        <%= render "admins/articles/sidebar.html.erb", genres: @genres %>
       </div>
 
       <div class="col-sm-9">
+
         <div class="admins-articles__new">
-          <%= form_with model: @article, local: true do |f| %>
+          <div class="admins-articles__new-error">
+            <%= flash[:admins_article_error] %>
+          </div>
+
+          <%= form_with model: @article, url: admins_articles_path, method: :post, local: true do |f| %>
             <div class="admins-articles__new-form">
               <%= f.label "タイトル" %><br />
               <%= f.text_field :title, autofocus: true, placeholder: "タイトル", style: "width: 500px;" %>
@@ -35,7 +40,7 @@
             </div>
 
             <div class="admins-articles__new-form admins-articles__new-form-category">
-              <div class="articles__new-form-category--1">
+              <div class="admins-articles__new-form-category--1">
                 <%= f.label "カテゴリー１" %><br />
                 <%= f.select :category_1, Article.category_1s.keys.to_a, include_blank: true %>
               </div>

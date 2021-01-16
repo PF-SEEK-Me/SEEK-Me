@@ -15,6 +15,8 @@ class Admins::ArticlesController < ApplicationController
 
     #閲覧履歴
     @browsing_histories = BrowsingHistory.all
+    #いいね
+    @favorites = Favorite.all
   end
 
   def new
@@ -23,10 +25,13 @@ class Admins::ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.new(article_params)
-    if article.save
+    @genres = Genre.where(is_active: true)
+
+    @article = Article.new(article_params)
+    if @article.save
       redirect_to admins_articles_path
     else
+      flash[:admins_article_error] = "**（入力必須）空欄に入力してください**"
       render :new
     end
   end

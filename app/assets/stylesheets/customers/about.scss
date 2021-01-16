@@ -15,4 +15,45 @@
   &__section {
     margin-bottom: 50px;
   }
+
+  &__section-title {
+    font-weight: bold;
+    font-size: 20px;
+    background: linear-gradient(transparent 70%, #E4AC42 70%);
+  }
+
+  &__section-introduction {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  &__section-do-student {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    padding-left: 5px;
+    border-left: 8px solid #55B17A;
+
+    &--item {
+      font-size: 15px;
+    }
+  }
+
+  &__section-do-company {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 2px;
+    padding-left: 5px;
+    border-left: 8px solid #DA3D58;
+
+    &--item {
+      font-size: 15px;
+    }
+  }
+
+  &__section-use {
+    margin-top: 10px;
+  }
 }

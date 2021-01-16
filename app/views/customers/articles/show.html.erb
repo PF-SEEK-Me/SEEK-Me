@@ -65,14 +65,14 @@
       </div>
 
       <div class="customers-articles__post-challenge">
-        <div class="customers-articles__post-challenge-title">チャレンジしたことを投稿しよう！</div>
+        <span class="customers-articles__post-challenge-title">チャレンジしたことを投稿しよう！</span>
         <div class="customers-articles__error"><%= flash[:post_challange_error] %></div>
 
         <% if customer_signed_in? %>
           <%= form_with(model: [@article, @post_challenge], local: true) do |f| %>
             <div class="customers-articles__post-challenge-form">
               <div class="customers-articles__post-challenge-form--item">
-                <%= f.label "画像投稿" %><br />
+                <%= f.label "画像投稿（画像投稿は任意です）" %><br />
                 <%= f.attachment_field :image %>
               </div>
               <div class="customers-articles__post-challenge-form--item">
@@ -92,7 +92,11 @@
       </div>
 
       <div class="customers-articles__post-challenges">
-        <div class="customers-articles__post-challenges-title">みんなのチャレンジ！</div>
+        <span class="customers-articles__post-challenges-title">みんなのチャレンジ！</span>
+        <p>
+          <span class="customers-articles__post-challenges-is-student-true">学生の方</span>
+          <span class="customers-articles__post-challenges-is-student-false">企業の方</span>
+        </p>
         <table class="table table-hover">
           <tr>
             <th class="customers-articles__post-challenges-table-poster">投稿者</th>
@@ -103,7 +107,10 @@
           </tr>
           <% @article.post_challenges.each do |post_challenge| %>
             <tr>
-              <td><%= post_challenge.customer.last_name + post_challenge.customer.first_name %></td>
+              <td>
+                <span class="customers-articles__a"></span>
+                <%= post_challenge.customer.last_name + post_challenge.customer.first_name %>
+              </td>
               <td>
                 <%= post_challenge.created_at.strftime("%Y-%m-%d %H:%M") %>
               </td>

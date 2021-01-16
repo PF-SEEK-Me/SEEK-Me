@@ -90,6 +90,7 @@
 
   &__post-challenge-title {
     font-weight: bold;
+    background: linear-gradient(transparent 70%, #55B17A 70%);
   }
 
   &__post-challenge-form {
@@ -102,6 +103,17 @@
 
   &__post-challenges-title {
     font-weight: bold;
+    background: linear-gradient(transparent 70%, #E4AC42 70%);
+  }
+
+  &__post-challenges-is-student-true {
+    border-left: 5px solid #55B17A;
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+
+  &__post-challenges-is-student-false {
+    border-left: 5px solid #DA3D58;
   }
 
   &__post-challenges-table-poster {
@@ -118,5 +130,9 @@
   }
   &__post-challenges-table-action {
     width: 5%;
+  }
+
+  &__a {
+    border-left: 5px solid #55B17A;
   }
 }

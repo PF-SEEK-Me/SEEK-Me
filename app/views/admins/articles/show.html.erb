@@ -35,7 +35,7 @@
       <% end %>
     </div>
 
-    <div class="admins-articles__show-form">
+    <div class="admins-articles__show-form admins-articles__show-form--image">
       <%= attachment_image_tag @article, :image, size: "640x350" %>
     </div>
 
@@ -48,12 +48,14 @@
     </div>
 
     <div class="admins-articles__show-form admins-articles__show-form-label">
-      <div class="articles__show-form-status">ステータス</div>
-      <% if @article.is_active == true %>
-        <%= "配信中" %>
-      <% else %>
-        <%= "配信停止" %>
-      <% end %>
+      <div class="">
+        <span class="admins-articles__show-form-status">ステータス：</span>
+        <% if @article.is_active == true %>
+          <%= "配信中" %>
+        <% else %>
+          <%= "配信停止" %>
+        <% end %>
+      </div>
     </div>
 
     <div class="admins-articles__show-actions">
