@@ -1,0 +1,72 @@
+
+<!--css => app/assets/stylesheets/admins/customers.scss-->
+
+<div class="admins-customers">
+  <h3 class="admins-customers__title">Seek Me!</h3>
+
+  <div class="admins-customers__favorite">
+    <h4>あなたが大切にしたい価値観　Top 3</h4>
+    <div class="admins-customers__favorite-rank">
+      <div class="admins-customers__favorite-rank-non">
+        <% if @values_top_1 == nil && @values_top_2 == nil && @values_top_3 == nil %>
+          <%= "**まだ記事に「いいね！」をしていません**" %>
+        <% end %>
+      </div>
+      <div class="admins-customers__favorite-rank-item">
+        <% if @values_top_1 != nil %>
+          <span class="admins-customers__favorite-rank-item--label"><%= "Top 1: " %></span>
+          <span class="admins-customers__favorite-rank-item--value"><%= @values_top_1 %></span>
+        <% end %>
+      </div>
+      <div class="admins-customers__favorite-rank-item">
+        <% if @values_top_2 != nil %>
+          <span class="admins-customers__favorite-rank-item--label"><%= "Top 2: " %></span>
+          <span class="admins-customers__favorite-rank-item--value"><%= @values_top_2 %></span>
+        <% end %>
+      </div>
+      <div class="admins-customers__favorite-rank-item">
+        <% if @values_top_3 != nil %>
+          <span class="admins-customers__favorite-rank-item--label"><%= "Top 3: " %></span>
+          <span class="admins-customers__favorite-rank-item--value"><%= @values_top_3 %></span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="admins-customers__favorite-table">
+      <h4><%= @customer.last_name + @customer.first_name %>　さんがいいね！した記事</h4>
+      <table class="table table-hover">
+        <tr class="admins-customers__favorite-table-header">
+          <th class="admins-customers__favorite-table-header--item-1">タイトル</th>
+          <th class="admins-customers__favorite-table-header--item-2">配信日</th>
+          <th class="admins-customers-__favorite-table-header--item-2">ジャンル</th>
+          <th class="admins-customers__favorite-table-header--item-2">カテゴリー</th>
+          <th class="admins-customers__favorite-table-header--item-2">総閲覧数</th>
+          <th class="admins-customers__favorite-table-header--item-3">チャレンジ数</th>
+          <th class="admins-customers__favorite-table-header--item-2"></th>
+        </tr>
+
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td><%= favorite.article.title %></td>
+            <td><%= favorite.article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td><%= favorite.article.genre.name %></td>
+            <td>
+              <%= favorite.article.category_1 %><br />
+              <%= favorite.article.category_2 %><br />
+              <%= favorite.article.category_3 %>
+            </td>
+            <td>
+              <%= @browsing_histories.where(article_id: favorite.article.id).count.to_s(:delimited) %>
+            </td>
+            <td><%= favorite.article.post_challenges.count.to_s(:delimited) %></td>
+            <td><%= link_to "記事を見る", admins_article_path(favorite.article.id), class: "btn btn-sm btn-primary" %></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="admins-customers__favorite-paginate">
+        <%= paginate @favorites %>
+      </div>
+    </div>
+  </div>
+</div>

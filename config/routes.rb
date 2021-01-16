@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
-    resources :genres,   only: [:index, :create, :edit, :update]
-    resources :articles, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres,    only: [:index, :create, :edit, :update]
+    resources :articles,  only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show]
+    get "customers/:id/favorite" => "customers#favorite", as: "favorite_customer"#SEEK Me!ページ
   end
 
 
@@ -27,8 +28,8 @@ Rails.application.routes.draw do
     get "customer/favorite" => "customers#favorite", as: "favorite_customer"#SEEK Me!ページ
 
     resources :articles,  only: [:index, :show] do
-      resource :favorite,           only: [:create, :destroy]
-      resources :post_challenges,     only: [:create, :destroy]
+      resource :favorite,         only: [:create, :destroy]
+      resources :post_challenges, only: [:create, :destroy]
     end
   end
 

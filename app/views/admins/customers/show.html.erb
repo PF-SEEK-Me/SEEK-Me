@@ -63,8 +63,13 @@
         <td><%= @customer.created_at.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
     </table>
-    <div class="admins-customers__show-button">
-      <%= link_to "戻る", admins_customers_path, class: "btn btn-warning" %>
+    <div class="admins-customers__show-actions">
+      <span class="admins-customers__show-actions--back">
+        <%= link_to "戻る", admins_customers_path, class: "btn btn-warning" %>
+      </span>
+      <span class="admins-customers__show-actions--favorite">
+        <%= link_to "Seek Me!へ", admins_favorite_customer_path, class: "btn btn-success" %>
+      </span>
     </div>
   </div>
 </div>

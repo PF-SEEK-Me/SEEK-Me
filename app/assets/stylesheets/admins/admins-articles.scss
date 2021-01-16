@@ -46,6 +46,10 @@
   }
 
   /*new*/
+  &__new-error {
+    color: red;
+  }
+
   &__new-form {
     margin-bottom: 30px;
   }
@@ -84,6 +88,11 @@
 
   &__show-form {
     margin-bottom: 30px;
+
+    &--image {
+      width: 640px;
+      margin: 0 auto 30px auto;
+    }
   }
 
   &__show-form-title {

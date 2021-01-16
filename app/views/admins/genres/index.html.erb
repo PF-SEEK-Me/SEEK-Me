@@ -5,6 +5,10 @@
   <h3>ジャンル登録・一覧</h3>
 
   <div class="genres__new">
+    <div class="genres__new-error">
+      <%= flash[:genre_error] %>
+    </div>
+
     <%= form_with model: @genre, url: admins_genres_path, method: :post, local: true do |f| %>
       <div class="genres__new-main">
         <div class="genres__new-main-name">

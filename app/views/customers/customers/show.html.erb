@@ -43,9 +43,11 @@
         <th>カテゴリー</th>
         <td>
           <% if current_customer.is_student == true %>
+            <span class="customers__show-is-student-true"></span>
             <%= "学生" %>
           <% else %>
-            <%= "社会人" %>
+            <span class="customers__show-is-student-false"></span>
+            <%= "企業" %>
           <% end %>
         </td>
       </tr>

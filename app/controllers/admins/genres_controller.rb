@@ -5,9 +5,15 @@ class Admins::GenresController < ApplicationController
   end
 
   def create
+    @genres = Genre.all
+
     @genre = Genre.new(genre_params)
-    @genre.save
-    redirect_to admins_genres_path
+    if @genre.save
+      redirect_to admins_genres_path
+    else
+      flash[:genre_error] = "**ジャンル名を入力してください**"
+      render :index
+    end
   end
 
   def edit

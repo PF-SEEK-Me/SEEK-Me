@@ -19,6 +19,16 @@
     margin: 0 auto;
   }
 
+  &__show-is-student-true {
+    border-left: 5px solid #55B17A;
+    margin-right: 2px;
+  }
+
+  &__show-is-student-false {
+    border-left: 5px solid #DA3D58;
+    margin-right: 2px;
+  }
+
   &__show-update {
     color: red;
   }

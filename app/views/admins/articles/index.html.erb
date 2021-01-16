@@ -49,9 +49,11 @@
                   <%= article.category_3 %>
                 </td>
                 <td>
-                  <%= @browsing_histories.where(article_id: article.id).count %>
+                  <%= @browsing_histories.where(article_id: article.id).count.to_s(:delimited) %>
                 </td>
-                <td><%= "###" %><%= "($$$%)" %></td>
+                <td>
+                  <%= @favorites.where(article_id: article.id).count.to_s(:delimited) %>
+                  <%= "(#{sprintf("%.1f",((@favorites.where(article_id: article.id).count).quo(@browsing_histories.where(article_id: article.id).count)*100.to_f))}%)" %></td>
                 <td>
                   <% if article.is_active == true %>
                     <%= "配信中" %>
