@@ -72,9 +72,15 @@
       <span class="customers__show-button--option">
         <%= link_to "退会する", confirm_customer_path, class: "btn btn-danger" %>
       </span>
-      <span class="customers__show-button--option">
-        <%= link_to "SeeK Me!", favorite_customer_path, class: "btn btn-success" %>
-      </span>
+      <% if current_customer.is_student == true %>
+        <span class="customers__show-button--option">
+          <%= link_to "SeeK Me!", favorite_customer_path, class: "btn btn-success" %>
+        </span>
+      <% else %>
+        <span class="customers__show-button--option">
+          <%= link_to "Seek You!", seek_you_customer_path, class: "btn btn-success" %>
+        </span>
+      <% end %>
     </div>
   </div>
 </div>

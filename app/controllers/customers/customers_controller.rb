@@ -31,7 +31,7 @@ class Customers::CustomersController < ApplicationController
     redirect_to new_customer_session_path
   end
 
-  def favorite
+  def favorite#学生用My Page内のSeek Me!
     if customer_signed_in?
       @favorites = Favorite.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(15)
       @browsing_histories = BrowsingHistory.all
@@ -59,6 +59,11 @@ class Customers::CustomersController < ApplicationController
     else
       redirect_to new_customer_session_path
     end
+  end
+
+  def seek_you#企業用My Page内のSeek You!ページ
+    @seeks = Seek.where(customer_id: current_customer.id)
+
   end
 
   private

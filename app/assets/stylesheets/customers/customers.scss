@@ -91,7 +91,7 @@
     }
   }
 
-  /*favorite*/
+  /*favorite(Seek Me!)*/
   &__favorite {
     width: 80%;
     margin: 0 auto;
@@ -134,6 +134,12 @@
     &--item-3 {
       width: 15%;
     }
+  }
+
+  /*seek(Seek You!)*/
+  &__seeks-table {
+    width: 80%;
+    margin: 0 auto;
   }
 }
 

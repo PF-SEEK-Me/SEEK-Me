@@ -17,6 +17,7 @@ class Customer < ApplicationRecord
   has_many :browsing_histories, dependent: :destroy
   has_many :favorites,          dependent: :destroy
   has_many :post_challenges,    dependent: :destroy
+  has_many :seeks,              dependent: :destroy
 
   enum gender: {"男性": 0, "女性": 1}
 
