@@ -1,0 +1,37 @@
+
+<!--css => app/assets/stylesheets/customers/seeks.scss-->
+
+<div class="seeks">
+  <h3 class="seeks__title">Seek You!</h3>
+
+  <div class="seeks__index-table">
+    <h4><%= current_customer.last_name + current_customer.first_name %>　さんが気になった学生</h4>
+    <table class="table table-hover">
+      <tr class="seeks__index-table">
+        <th class="seeks__index-table--header">氏名</th>
+        <th class="seeks__index-table--header">性別</th>
+        <th class="seeks__index-table--header">年齢</th>
+        <th class="seeks__index-table--header">チャレンジ内容</th>
+        <th class="seeks__index-table--header"></th>
+      </tr>
+
+      <% @seeks.each do |seek| %>
+        <tr>
+          <td><%= seek.post_challenge.customer.last_name + seek.post_challenge.customer.first_name %></td>
+          <td><%= seek.post_challenge.customer.gender %></td>
+          <td><%= seek.post_challenge.customer.age %></td>
+          <td>
+            <%= seek.post_challenge.comment %>
+          </td>
+          <td><%= link_to "学生をチェック", seek_path(seek.id), class: "btn btn-sm btn-primary" %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @seeks %>
+
+    <div class="seeks__index-actions">
+      <%=link_to "My Pageへ戻る", customer_path(current_customer), class: "btn btn btn-warning" %>
+    </div>
+  </div>
+</div>

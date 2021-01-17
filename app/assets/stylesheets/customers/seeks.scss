@@ -1,0 +1,62 @@
+// Place all the styles related to the customers/customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.seeks {
+  width: 90%;
+  margin: 0 auto;
+
+  &__title {
+    margin-bottom: 30px;
+    margin-left: 5%;
+  }
+
+  /*index*/
+  &__index-table {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__index-table {
+
+    &--header {
+      background-color: #80D789;
+    }
+  }
+
+  &__index-actions {
+    text-align: right;
+    margin-bottom: 30px;
+  }
+
+  /*show*/
+  &__show-challenge-count {
+    font-weight: bold;
+  }
+
+  &__show-table {
+    &--header-1 {
+      width: 15%;
+      background-color: #80D789;
+    }
+    &--header-2 {
+      width: 40%;
+      background-color: #80D789;
+    }
+    &--header-3 {
+      width: 30%;
+      background-color: #80D789;
+    }
+  }
+
+  &__show-actions {
+    text-align: right;
+    margin-bottom: 30px;
+
+    &--mypage {
+      margin-right: 20px;
+    }
+  }
+}

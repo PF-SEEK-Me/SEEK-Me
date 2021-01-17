@@ -3,6 +3,7 @@ class Customers::CustomersController < ApplicationController
   end
 
   def show
+    @posted_infos = PostChallenge.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def edit
@@ -31,7 +32,7 @@ class Customers::CustomersController < ApplicationController
     redirect_to new_customer_session_path
   end
 
-  def favorite
+  def favorite#学生用My Page内のSeek Me!
     if customer_signed_in?
       @favorites = Favorite.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(15)
       @browsing_histories = BrowsingHistory.all

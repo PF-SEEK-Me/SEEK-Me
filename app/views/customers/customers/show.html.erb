@@ -5,76 +5,118 @@
   <h3 class="customers__title">My Page</h3>
 
   <div class="customers__show">
-    <div class="customers__show-update"><%= flash[:customer_update] %></div>
-    <table class="table table-hover">
-      <tr>
-        <th>姓　名</th>
-        <td><%= current_customer.last_name + "　" + current_customer.first_name %></td>
-      </tr>
-      <tr>
-        <th>セイ　メイ</th>
-        <td><%= current_customer.last_name_kana + "　" + current_customer.first_name_kana %></td>
-      </tr>
-      <tr>
-        <th>性別</th>
-        <td><%= current_customer.gender %></td>
-      </tr>
-      <tr>
-        <th>年齢</th>
-        <td><%= current_customer.age %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= current_customer.email %></td>
-      </tr>
-      <tr>
-        <th>郵便番号</th>
-        <td><%= current_customer.postal_code %></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td><%= current_customer.address %></td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td><%= current_customer.telephone_number %></td>
-      </tr>
-      <tr>
-        <th>カテゴリー</th>
-        <td>
-          <% if current_customer.is_student == true %>
-            <span class="customers__show-is-student-true"></span>
-            <%= "学生" %>
-          <% else %>
-            <span class="customers__show-is-student-false"></span>
-            <%= "企業" %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>ステータス</th>
-        <td>
-          <% if current_customer.is_active == true %>
-            <%= "有効会員" %>
-          <% else %>
-            <%= "退会者" %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>登録日</th>
-        <td><%= current_customer.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-      </tr>
-    </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 customers__show-info">
+          <div class="customers__show-update"><%= flash[:customer_update] %></div>
+          <table class="table table-hover">
+            <tr>
+              <th>姓　名</th>
+              <td><%= current_customer.last_name + "　" + current_customer.first_name %></td>
+            </tr>
+            <tr>
+              <th>セイ　メイ</th>
+              <td><%= current_customer.last_name_kana + "　" + current_customer.first_name_kana %></td>
+            </tr>
+            <tr>
+              <th>性別</th>
+              <td><%= current_customer.gender %></td>
+            </tr>
+            <tr>
+              <th>年齢</th>
+              <td><%= current_customer.age %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= current_customer.email %></td>
+            </tr>
+            <tr>
+              <th>郵便番号</th>
+              <td><%= current_customer.postal_code %></td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td><%= current_customer.address %></td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td><%= current_customer.telephone_number %></td>
+            </tr>
+            <tr>
+              <th>カテゴリー</th>
+              <td>
+                <% if current_customer.is_student == true %>
+                  <span class="customers__show-is-student-true"></span>
+                  <%= "学生" %>
+                <% else %>
+                  <span class="customers__show-is-student-false"></span>
+                  <%= "企業" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>ステータス</th>
+              <td>
+                <% if current_customer.is_active == true %>
+                  <%= "有効会員" %>
+                <% else %>
+                  <%= "退会者" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>登録日</th>
+              <td><%= current_customer.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            </tr>
+          </table>
 
-    <div class="customers__show-button">
-      <%= link_to "編集する", edit_customer_path, class: "btn btn-warning" %>
-      <span class="customers__show-button--option">
-        <%= link_to "退会する", confirm_customer_path, class: "btn btn-danger" %>
-      </span>
-      <span class="customers__show-button--option">
-        <%= link_to "SeeK Me!", favorite_customer_path, class: "btn btn-success" %>
-      </span>
+          <div class="customers__show-actions">
+            <%= link_to "編集する", edit_customer_path, class: "btn btn-warning" %>
+            <span class="customers__show-actions--option">
+              <%= link_to "退会する", confirm_customer_path, class: "btn btn-danger" %>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <div>
+            <span class="customers__show-challenge-count">総チャレンジ投稿数：</span>
+            <span><%= @posted_infos.count.to_s(:delimited) %></span>
+          </div>
+
+          <table class="table table-hover">
+            <tr class="customers__show-table">
+              <th class="customers__show-table--header-1">チャレンジ投稿日</th>
+              <th class="customers__show-table--header-2">チャレンジ内容</th>
+              <th class="customers__show-table--header-3">記事タイトル</th>
+              <th class="customers__show-table--header-1"></th>
+            </tr>
+
+            <% @posted_infos.each do |posted_info| %>
+              <tr>
+                <td><%= posted_info.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= posted_info.comment %></td>
+                <td><%= posted_info.article.title %></td>
+                <td><%= link_to "記事を見る", article_path(posted_info.article.id), class: "btn btn-xs btn-primary" %></td>
+              </tr>
+            <% end %>
+          </table>
+
+          <div><%= paginate @posted_infos %></div>
+
+          <div class="customers__show-actions">
+            <% if current_customer.is_student == true %>
+              <span class="customers__show-actions--option">
+                <%= link_to "SeeK Me!", favorite_customer_path, class: "btn btn-success" %>
+              </span>
+            <% else %>
+              <span class="customers__show-actions--option">
+                <%= link_to "Seek You!", seeks_path, class: "btn btn-success" %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

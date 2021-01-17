@@ -29,5 +29,8 @@ class Customers::ArticlesController < ApplicationController
 
     #コメント投稿
     @post_challenge = PostChallenge.new
+
+    #Seek You!テーブルへの空レコード
+    @seek = Seek.new
   end
 end

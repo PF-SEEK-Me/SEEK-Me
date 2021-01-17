@@ -1,0 +1,2 @@
+module Customers::SeeksHelper
+end
