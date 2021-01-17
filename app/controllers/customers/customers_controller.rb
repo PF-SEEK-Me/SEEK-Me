@@ -3,6 +3,7 @@ class Customers::CustomersController < ApplicationController
   end
 
   def show
+    @posted_infos = PostChallenge.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def edit
@@ -59,11 +60,6 @@ class Customers::CustomersController < ApplicationController
     else
       redirect_to new_customer_session_path
     end
-  end
-
-  def seek_you#企業用My Page内のSeek You!ページ
-    @seeks = Seek.where(customer_id: current_customer.id)
-
   end
 
   private

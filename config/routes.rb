@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :seeks, only: [:index, :show]
+
   end
 
 

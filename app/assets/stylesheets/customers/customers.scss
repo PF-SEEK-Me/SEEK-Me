@@ -15,7 +15,7 @@
 
   /*show*/
   &__show {
-    width: 60%;
+    width: 95%;
     margin: 0 auto;
   }
 
@@ -33,7 +33,26 @@
     color: red;
   }
 
-  &__show-button {
+  &__show-challenge-count {
+    font-weight: bold;
+  }
+
+  &__show-table {
+    &--header-1 {
+      width: 15%;
+      background-color: #80D789;
+    }
+    &--header-2 {
+      width: 40%;
+      background-color: #80D789;
+    }
+    &--header-3 {
+      width: 30%;
+      background-color: #80D789;
+    }
+  }
+
+  &__show-actions {
     text-align: right;
     margin-bottom: 30px;
 
@@ -123,23 +142,15 @@
   }
 
   &__favorite-table-header {
-    background-color: #80D789;
 
     &--item-1 {
-      width: 35%;
+      width: 28%;
+      background-color: #80D789;
     }
     &--item-2 {
-      width: 10%;
+      width: 12%;
+      background-color: #80D789;
     }
-    &--item-3 {
-      width: 15%;
-    }
-  }
-
-  /*seek(Seek You!)*/
-  &__seeks-table {
-    width: 80%;
-    margin: 0 auto;
   }
 }
 

@@ -1,0 +1,83 @@
+<!--css => app/assets/stylesheets/customers/seeks.scss-->
+
+<div class="seeks">
+  <h3 class="seeks__title">Seek You!</h3>
+
+  <div class="seeks__show">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <h4>学生情報</h4>
+          <table class="table table-hover">
+            <tr>
+              <th>姓　名</th>
+              <td><%= @student_info.last_name + "　" + @student_info.first_name %></td>
+            </tr>
+            <tr>
+              <th>セイ　メイ</th>
+              <td><%= @student_info.last_name_kana + "　" + @student_info.first_name_kana %></td>
+            </tr>
+            <tr>
+              <th>性別</th>
+              <td><%= @student_info.gender %></td>
+            </tr>
+            <tr>
+              <th>年齢</th>
+              <td><%= @student_info.age %></td>
+            </tr>
+            <tr>
+              <th>ステータス</th>
+              <td>
+                <% if @student_info.is_active == true %>
+                  <%= "有効会員" %>
+                <% else %>
+                  <%= "退会者" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>登録日</th>
+              <td><%= @student_info.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-sm-9">
+          <div>
+            <span class="seeks__show-challenge-count">総チャレンジ数：</span>
+            <span><%= @posted_infos.count.to_s(:delimited) %></span>
+          </div>
+
+          <table class="table table-hover">
+              <tr class="seeks__show-table">
+                <th class="seeks__show-table--header-1">チャレンジ投稿日</th>
+                <th class="seeks__show-table--header-2">チャレンジ内容</th>
+                <th class="seeks__show-table--header-3">記事タイトル</th>
+                <th class="seeks__show-table--header-1"></th>
+              </tr>
+
+            <% @posted_infos.each do |posted_info| %>
+              <tr>
+                <td><%= posted_info.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= posted_info.comment %></td>
+                <td><%= posted_info.article.title %></td>
+                <td><%= link_to "記事を見る", article_path(posted_info.article.id), class: "btn btn-xs btn-primary" %></td>
+              </tr>
+            <% end %>
+          </table>
+
+          <div><%= paginate @posted_infos %></div>
+
+          <div class="seeks__show-actions">
+            <span class="seeks__show-actions--mypage">
+              <%= link_to "My Pageへ戻る", customer_path(current_customer), class: "btn btn-warning" %>
+            </span>
+            <span>
+              <%= link_to "Seek You!一覧へ戻る", seeks_path, class: "btn btn-success" %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

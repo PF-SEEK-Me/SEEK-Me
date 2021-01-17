@@ -128,11 +128,13 @@
                 <% if post_challenge.customer == current_customer %>
                   <%= link_to "削除", article_post_challenge_path(post_challenge.article, post_challenge), method: :delete, class: "btn btn-sm btn-danger" %>
                 <% elsif current_customer.is_student == false %>
-                  <% if post_challenge.seeked_by?(current_customer) %>
-                    <i class="fas fa-thumbs-up", area-hidden="true", style="color: #55B17A; font-size: 18px;"></i>
-                  <% else %>
-                    <%= link_to article_post_challenge_seeks_path(@article, post_challenge), method: :post do %>
+                  <% if post_challenge.customer.is_student == true %>
+                    <% if post_challenge.seeked_by?(current_customer) %>
+                      <i class="fas fa-thumbs-up", area-hidden="true", style="color: #55B17A; font-size: 18px;"></i>
+                    <% else %>
+                      <%= link_to article_post_challenge_seeks_path(@article, post_challenge), method: :post do %>
                         <i class="far fa-thumbs-up", style="color: gray; font-size: 18px;"></i>
+                      <% end %>
                     <% end %>
                   <% end %>
                 <% end %>
