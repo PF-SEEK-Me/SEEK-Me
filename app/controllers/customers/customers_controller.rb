@@ -60,6 +60,9 @@ class Customers::CustomersController < ApplicationController
     else
       redirect_to new_customer_session_path
     end
+
+    #企業オファー（企業会員にgoodされたチャレンジ内容）
+    @seeks = Seek.order(created_at: :desc)
   end
 
   private

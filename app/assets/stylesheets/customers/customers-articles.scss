@@ -85,6 +85,7 @@
     }
   }
 
+  /*_post_challenge*/
   &__post-challenge {
     margin-top: 70px;
     margin-bottom: 30px;
@@ -120,18 +121,23 @@
 
   &__post-challenges-table-poster {
     width: 15%;
+    background-color: #F6EB9F;
   }
   &__post-challenges-table-day {
     width: 15%;
+    background-color: #F6EB9F;
   }
   &__post-challenges-table-image {
     width: 15%;
+    background-color: #F6EB9F;
   }
   &__post-challenges-table-challenge {
-    width: 50%;
+    width: 45%;
+    background-color: #F6EB9F;
   }
   &__post-challenges-table-action {
-    width: 5%;
+    width: 10%;
+    background-color: #F6EB9F;
   }
 
   &__post-challenges-table-is-student-true {

@@ -20,10 +20,10 @@ class Customers::ArticlesController < ApplicationController
 
     #閲覧履歴テーブルのレコード作成
     if customer_signed_in?
-      @browsing_history = @article.browsing_histories.new
-      @browsing_history.customer_id = current_customer.id
+      browsing_history = @article.browsing_histories.new
+      browsing_history.customer_id = current_customer.id
       if BrowsingHistory.where(customer_id: current_customer.id, article_id: params[:id]).empty?
-        @browsing_history.save
+        browsing_history.save
       end
     end
 
