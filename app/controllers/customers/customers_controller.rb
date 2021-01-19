@@ -34,7 +34,7 @@ class Customers::CustomersController < ApplicationController
 
   def favorite#学生用My Page内のSeek Me!
     if customer_signed_in?
-      @favorites = Favorite.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(15)
+      @favorites = Favorite.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(10)
       @browsing_histories = BrowsingHistory.all
 
       #価値観の分析
@@ -62,7 +62,7 @@ class Customers::CustomersController < ApplicationController
     end
 
     #企業オファー（企業会員にgoodされたチャレンジ内容）
-    @seeks = Seek.order(created_at: :desc)
+    @seeks = Seek.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   private

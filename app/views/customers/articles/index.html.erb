@@ -27,9 +27,9 @@
               <th class="customers-articles__index-table-header--item-2">ジャンル</th>
               <th class="customers-articles__index-table-header--item-2">カテゴリー</th>
               <th class="customers-articles__index-table-header--item-2">総閲覧数</th>
-              <th class="customers-articles__index-table-header--item-2">いいね!</th>
+              <th class="customers-articles__index-table-header--item-3">いいね!</th>
               <th class="customers-articles__index-table-header--item-2">チャレンジ数</th>
-              <th class="customers-articles__index-table-header--item-3"></th>
+              <th class="customers-articles__index-table-header--item-4"></th>
             </tr>
 
             <% @articles.each do |article| %>
@@ -42,10 +42,10 @@
                   <%= article.category_2 %><br />
                   <%= article.category_3 %>
                 </td>
-                <td>
-                  <%= @browsing_histories.where(article_id: article.id).count.to_s(:delimited) %>
+                <td class="customers-articles__index-table--pvcount">
+                  <%= @browsing_histories.where(article_id: article.id).count.to_s(:delimited) %> pv
                 </td>
-                <td>
+                <td class="customers-articles__index-table--favorite">
                   <% if customer_signed_in? %>
                     <% if article.favorited_by?(current_customer) %>
                       <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
@@ -54,7 +54,9 @@
                     <%= "" %>
                   <% end %>
                 </td>
-                <td><%= article.post_challenges.count.to_s(:delimited) %>件</td>
+                <td class="customers-articles__index-table--postchallenge">
+                  <%= article.post_challenges.count.to_s(:delimited) %> 件
+                </td>
                 <td><%= link_to "記事を見る", article_path(article), class: "btn btn-sm btn-primary" %></td>
               </tr>
             <% end %>
@@ -66,5 +68,11 @@
         </div>
       </div>
     </div>
+
+    <span id="back">
+      <%= link_to "#" do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    </span>
   </div>
 </div>

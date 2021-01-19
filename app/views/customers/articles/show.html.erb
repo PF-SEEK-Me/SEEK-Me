@@ -66,40 +66,31 @@
         <%= @article.text %>
       </div>
 
-      <div class="customers-articles__post-challenge">
-        <span class="customers-articles__post-challenge-title">チャレンジしたことを投稿しよう！</span>
-        <div class="customers-articles__error"><%= flash[:post_challange_error] %></div>
-
-        <% if customer_signed_in? %>
-          <%= form_with(model: [@article, @post_challenge], local: true) do |f| %>
-            <div class="customers-articles__post-challenge-form">
-              <div class="customers-articles__post-challenge-form--item">
-                <%= f.label "画像投稿（画像投稿は任意です）" %><br />
-                <%= f.attachment_field :image %>
-              </div>
-              <div class="customers-articles__post-challenge-form--item">
-                <%= f.label "チャレンジ" %><br />
-                <%= f.text_area :comment, placeholder: "チャレンジしたこと", style: "width: 300px; height: 50px;" %>
-              </div>
-              <div class="customers-articles__post-challenge-form--item">
-                <%= f.submit "チャレンジ投稿", class: "btn btn-sm btn-success" %>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="customers-articles__show--non-customer">
-            <%= "**会員登録すると、あなたのチャレンジを投稿できるようになります！**" %>
-          </div>
-        <% end %>
-      </div>
-
 　　　<!--チャレンジ投稿・一覧機能(_post_challenge.html.erb)-->
       <%= render "customers/articles/post_challenge.html.erb", {article: @article, post_challenges: @post_challenges, post_challenge: @post_challenge} %>
 
     </div>
 
     <div class="customers-articles__show-actions">
-      <%= link_to "記事一覧へ戻る", articles_path, class: "btn btn-warning" %>
+      <span class="customers-articles__show-actions--index">
+        <%= link_to "記事一覧へ戻る", articles_path, class: "btn btn-warning" %>
+      </span>
+      <span class="customers-articles__show-actions--mypage">
+        <%= link_to "My Pageへ", customer_path, class: "btn btn-primary" %>
+      </span>
+      <span class="customers-articles__show-actions-seek">
+        <% if current_customer.is_student == true %>
+          <%= link_to "Seek Me!へ", favorite_customer_path, class: "btn btn-success" %>
+        <% else %>
+          <%= link_to "Seek You!へ", seeks_path, class: "btn btn-success" %>
+        <% end %>
+      </span>
     </div>
+
+    <span id="back">
+      <%= link_to "#" do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    </span>
   </div>
 </div>

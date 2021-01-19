@@ -37,16 +37,12 @@
     font-weight: bold;
   }
 
-  &__show-table {
+  &__show-table-index {
     &--header-1 {
       width: 15%;
       background-color: #80D789;
     }
     &--header-2 {
-      width: 40%;
-      background-color: #80D789;
-    }
-    &--header-3 {
       width: 30%;
       background-color: #80D789;
     }
@@ -173,6 +169,16 @@
     &--item-2 {
       width: 12%;
       background-color: #80D789;
+    }
+  }
+
+  &__favorite-table {
+
+    &--pv {
+      text-align: right;
+    }
+    &--postchallenge {
+      text-align: right;
     }
   }
 

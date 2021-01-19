@@ -1,3 +1,30 @@
+<div class="customers-articles__post-challenge">
+  <span class="customers-articles__post-challenge-title">チャレンジしたことを投稿しよう！</span>
+  <div class="customers-articles__error"><%= flash[:post_challange_error] %></div>
+
+  <% if customer_signed_in? %>
+    <%= form_with(model: [article, post_challenge], local: true) do |f| %>
+      <div class="customers-articles__post-challenge-form">
+        <div class="customers-articles__post-challenge-form--item">
+          <%= f.label "画像投稿（画像投稿は任意です）" %><br />
+          <%= f.attachment_field :image %>
+        </div>
+        <div class="customers-articles__post-challenge-form--item">
+          <%= f.label "チャレンジ" %><br />
+          <%= f.text_area :comment, placeholder: "チャレンジしたこと", style: "width: 300px; height: 50px;" %>
+        </div>
+        <div class="customers-articles__post-challenge-form--item">
+          <%= f.submit "チャレンジ投稿", class: "btn btn-sm btn-success" %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="customers-articles__show--non-customer">
+      <%= "**会員登録すると、あなたのチャレンジを投稿できるようになります！**" %>
+    </div>
+  <% end %>
+</div>
+
 <div class="customers-articles__post-challenges">
   <span class="customers-articles__post-challenges-title">みんなのチャレンジ！</span>
   <p>
@@ -16,7 +43,7 @@
         <% end %>
       </th>
     </tr>
-    <% article.post_challenges.each do |post_challenge| %>
+    <% post_challenges.each do |post_challenge| %>
       <tr>
         <td>
           <% if post_challenge.customer.is_student == true %>
@@ -31,7 +58,7 @@
         </td>
         <td><%= attachment_image_tag post_challenge, :image %></td>
         <td><%= post_challenge.comment %></td>
-        <td>
+        <td class="customers-articles__post-challenges--actions">
           <% if post_challenge.customer == current_customer %>
             <%= link_to "削除", article_post_challenge_path(post_challenge.article, post_challenge), method: :delete, class: "btn btn-sm btn-danger" %>
           <% elsif current_customer.is_student == false %>

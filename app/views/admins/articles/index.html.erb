@@ -28,14 +28,14 @@
         <div class="admins-articles__index-table">
           <table class="table table-hover">
             <tr class="admins-articles__index-table-header">
-              <th class="admins-articles__index-table-header--item-1">タイトル</th>
-              <th class="admins-articles__index-table-header--item-2">配信日</th>
-              <th class="admins-articles__index-table-header--item-2">ジャンル</th>
-              <th class="admins-articles__index-table-header--item-2">カテゴリー</th>
-              <th class="admins-articles__index-table-header--item-2">閲覧数</th>
-              <th class="admins-articles__index-table-header--item-2">いいね数(率)</th>
-              <th class="admins-articles__index-table-header--item-2">ステータス</th>
-              <th class="admins-articles__index-table-header--item-3"></th>
+              <th class="admins-articles__index-table--header-1">タイトル</th>
+              <th class="admins-articles__index-table--header-2">配信日</th>
+              <th class="admins-articles__index-table--header-2">ジャンル</th>
+              <th class="admins-articles__index-table--header-2">カテゴリー</th>
+              <th class="admins-articles__index-table--header-2">閲覧数</th>
+              <th class="admins-articles__index-table--header-2">いいね数(率)</th>
+              <th class="admins-articles__index-table--header-2">ステータス</th>
+              <th class="admins-articles__index-table--header-3"></th>
             </tr>
 
             <% @articles.each do |article| %>
@@ -48,13 +48,13 @@
                   <%= article.category_2 %><br />
                   <%= article.category_3 %>
                 </td>
-                <td>
-                  <%= @browsing_histories.where(article_id: article.id).count.to_s(:delimited) %>
+                <td class="admins-articles__index-table--pv">
+                  <%= @browsing_histories.where(article_id: article.id).count.to_s(:delimited) %> pv
                 </td>
-                <td>
-                  <%= @favorites.where(article_id: article.id).count.to_s(:delimited) %>
+                <td class="admins-articles__index-table--favorite">
+                  <%= @favorites.where(article_id: article.id).count.to_s(:delimited) %> 件<br />
                   <%= "(#{sprintf("%.1f",((@favorites.where(article_id: article.id).count).quo(@browsing_histories.where(article_id: article.id).count)*100.to_f))}%)" %></td>
-                <td>
+                <td class="admins-articles__index-table--status">
                   <% if article.is_active == true %>
                     <%= "配信中" %>
                   <% else %>

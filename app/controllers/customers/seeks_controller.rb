@@ -8,7 +8,7 @@ class Customers::SeeksController < ApplicationController
 
     @student_info = Customer.find(@seek.post_challenge.customer.id)
 
-    @posted_infos = PostChallenge.where(customer_id: @seek.post_challenge.customer.id).order(created_at: :desc).page(params[:page]).per(10)
+    @posted_infos = PostChallenge.where(customer_id: @seek.post_challenge.customer.id).order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def create

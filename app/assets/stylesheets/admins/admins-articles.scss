@@ -13,17 +13,32 @@
     margin-left: 5%;
   }
 
-  &__index-table-header {
-    background-color: #80D789;
+  &__index-table {
 
-    &--item-1 {
+    &--header-1 {
       width: 20%;
+      background-color: #80D789;
     }
-    &--item-2 {
+    &--header-2 {
       width: 11%;
+      background-color: #80D789;
     }
-    &--item-3 {
+    &--header-3 {
       width: 3%;
+      background-color: #80D789;
+    }
+  }
+
+  &__index-table {
+
+    &--pv {
+      text-align: right;
+    }
+    &--favorite {
+      text-align: center;
+    }
+    &--status {
+      text-align: center;
     }
   }
 

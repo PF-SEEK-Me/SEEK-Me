@@ -40,6 +40,10 @@
               <td><%= @student_info.created_at.strftime("%Y-%m-%d %H:%M") %></td>
             </tr>
           </table>
+
+          <div class="seeks__show-actions">
+            <%= link_to "この学生にオファーを出す", "#", class: "btn btn-danger" %>
+          </div>
         </div>
 
         <div class="col-sm-9">
@@ -72,12 +76,18 @@
             <span class="seeks__show-actions--mypage">
               <%= link_to "My Pageへ戻る", customer_path, class: "btn btn-warning" %>
             </span>
-            <span>
+            <span class="">
               <%= link_to "Seek You!一覧へ戻る", seeks_path, class: "btn btn-success" %>
             </span>
           </div>
         </div>
       </div>
     </div>
+
+    <span id="back">
+      <%= link_to "#" do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    </span>
   </div>
 </div>
