@@ -37,16 +37,12 @@
     font-weight: bold;
   }
 
-  &__show-table {
+  &__show-table-index {
     &--header-1 {
       width: 15%;
       background-color: #80D789;
     }
     &--header-2 {
-      width: 40%;
-      background-color: #80D789;
-    }
-    &--header-3 {
       width: 30%;
       background-color: #80D789;
     }
@@ -116,9 +112,15 @@
     margin: 0 auto;
   }
 
+  &__favorite-title {
+    font-size: 20px;
+    border-bottom: 3px solid #DA3D58;
+  }
+
   &__favorite-rank {
     display: flex;
     margin-left: 20px;
+    margin-top: 10px;
     margin-bottom: 50px;
   }
 
@@ -141,6 +143,23 @@
     }
   }
 
+  &__favorite-offer {
+    margin-bottom: 50px;
+  }
+
+  &__favorite-offer-table {
+    margin-top: 10px;
+  }
+
+  &__favorite-offer-title {
+    font-size: 20px;
+    border-bottom: 3px solid #E4AC42;
+  }
+
+  &__favorite-offer-table-header {
+    background-color: #F6EB9F;
+  }
+
   &__favorite-table-header {
 
     &--item-1 {
@@ -151,6 +170,21 @@
       width: 12%;
       background-color: #80D789;
     }
+  }
+
+  &__favorite-table {
+
+    &--pv {
+      text-align: right;
+    }
+    &--postchallenge {
+      text-align: right;
+    }
+  }
+
+  &__favorite-actions {
+    text-align: right;
+    margin-bottom: 50px;
   }
 }
 

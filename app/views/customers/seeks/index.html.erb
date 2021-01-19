@@ -23,7 +23,7 @@
           <td>
             <%= seek.post_challenge.comment %>
           </td>
-          <td><%= link_to "学生をチェック", seek_path(seek.id), class: "btn btn-sm btn-primary" %></td>
+          <td><%= link_to "この学生をチェック", seek_path(seek.id), class: "btn btn-sm btn-primary" %></td>
         </tr>
       <% end %>
     </table>
@@ -31,7 +31,7 @@
     <%= paginate @seeks %>
 
     <div class="seeks__index-actions">
-      <%=link_to "My Pageへ戻る", customer_path(current_customer), class: "btn btn btn-warning" %>
+      <%=link_to "My Pageへ戻る", customer_path, class: "btn btn btn-warning" %>
     </div>
   </div>
 </div>

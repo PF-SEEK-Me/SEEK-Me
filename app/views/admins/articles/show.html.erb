@@ -61,6 +61,13 @@
     <div class="admins-articles__show-actions">
       <%= link_to "記事を編集する", edit_admins_article_path(@article.id), class: "btn btn-primary" %>
       <span><%= link_to "記事一覧へ戻る", admins_articles_path, class: "btn btn-warning" %></span>
+      <span><%= link_to "会員情報一覧へ", admins_customers_path, class: "btn btn-info" %></span>
     </div>
   </div>
+
+  <span id="back">
+    <%= link_to "#" do %>
+      <i class="fas fa-arrow-circle-up"></i>
+    <% end %>
+  </span>
 </div>

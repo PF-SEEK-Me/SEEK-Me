@@ -45,7 +45,23 @@
     margin-left: 30px;
   }
 
-  &__index-table-header {
-    background-color: #80D789;
+  &__index-table {
+
+    &--header-1 {
+      background-color: #80D789;
+    }
+    &--header-2 {
+      text-align: center;
+      background-color: #80D789;
+    }
+    &--article {
+      text-align: right;
+    }
+    &--status {
+      text-align: center;
+    }
+    &--action {
+      text-align: center;
+    }
   }
 }

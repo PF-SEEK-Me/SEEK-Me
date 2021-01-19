@@ -5,7 +5,9 @@
   <h3 class="admins-customers__title">Seek Me!</h3>
 
   <div class="admins-customers__favorite">
-    <h4>あなたが大切にしたい価値観　Top 3</h4>
+    <span class="admins-customers__favorite-title">
+      <%= @customer.last_name + @customer.first_name %> さんが大切にしたい価値観　Top 3
+    </span>
     <div class="admins-customers__favorite-rank">
       <div class="admins-customers__favorite-rank-non">
         <% if @values_top_1 == nil && @values_top_2 == nil && @values_top_3 == nil %>
@@ -32,17 +34,42 @@
       </div>
     </div>
 
-    <div class="admins-customers__favorite-table">
-      <h4><%= @customer.last_name + @customer.first_name %>　さんがいいね！した記事</h4>
+    <div class="admins-customers__favorite-offer">
+      <span class="admins-customers__favorite-offer-title">
+        <%= @customer.last_name + @customer.first_name %> さんに企業オファーが届いてます！
+      </span>
+      <table class="table table-hover admins-customers__favorite-offer-table">
+        <tr class="">
+          <th class="admins-customers__favorite-offer-table--header">企業名</th>
+          <th class="admins-customers__favorite-offer-table--header">オファー日</th>
+          <th class="admins-customers__favorite-offer-table--header">ナイスチャレンジ！</th>
+          <th class="admins-customers__favorite-offer-table--header"></th>
+        </tr>
+
+        <% @seeks.each do |seek| %>
+          <% if seek.post_challenge.customer.id == @customer.id %>
+            <tr>
+              <td><%= seek.customer.last_name + seek.customer.first_name %></td>
+              <td><%= seek.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= seek.post_challenge.comment %></td>
+              <td><%= link_to "オファーを見る", "#", class: "btn btn-sm btn-success" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="admins-customers__favorite-article">
+      <h4><%= @customer.last_name + @customer.first_name %> さんがいいね！した記事</h4>
       <table class="table table-hover">
-        <tr class="admins-customers__favorite-table-header">
-          <th class="admins-customers__favorite-table-header--item-1">タイトル</th>
-          <th class="admins-customers__favorite-table-header--item-2">配信日</th>
-          <th class="admins-customers-__favorite-table-header--item-2">ジャンル</th>
-          <th class="admins-customers__favorite-table-header--item-2">カテゴリー</th>
-          <th class="admins-customers__favorite-table-header--item-2">総閲覧数</th>
-          <th class="admins-customers__favorite-table-header--item-3">チャレンジ数</th>
-          <th class="admins-customers__favorite-table-header--item-2"></th>
+        <tr class="admins-customers__favorite-article-table">
+          <th class="admins-customers__favorite-article-table--header-1">タイトル</th>
+          <th class="admins-customers__favorite-article-table--header-2">配信日</th>
+          <th class="admins-customers__favorite-article-table--header-2">ジャンル</th>
+          <th class="admins-customers__favorite-article-table--header-2">カテゴリー</th>
+          <th class="admins-customers__favorite-article-table--header-3">総閲覧数</th>
+          <th class="admins-customers__favorite-article-table--header-3">チャレンジ数</th>
+          <th class="admins-customers__favorite-article-table--header-2"></th>
         </tr>
 
         <% @favorites.each do |favorite| %>
@@ -55,10 +82,12 @@
               <%= favorite.article.category_2 %><br />
               <%= favorite.article.category_3 %>
             </td>
-            <td>
-              <%= @browsing_histories.where(article_id: favorite.article.id).count.to_s(:delimited) %>
+            <td class="admins-customers__favorite-article-table--pv">
+              <%= @browsing_histories.where(article_id: favorite.article.id).count.to_s(:delimited) %> pv
             </td>
-            <td><%= favorite.article.post_challenges.count.to_s(:delimited) %></td>
+            <td class="admins-customers__favorite-article-table--postchallenge">
+              <%= favorite.article.post_challenges.count.to_s(:delimited) %> 件
+            </td>
             <td><%= link_to "記事を見る", admins_article_path(favorite.article.id), class: "btn btn-sm btn-primary" %></td>
           </tr>
         <% end %>
@@ -68,5 +97,20 @@
         <%= paginate @favorites %>
       </div>
     </div>
+
+    <div class="admins-customers__favorite-actions">
+      <span class="admins-customers__favorite-actions--customers">
+        <%= link_to "会員一覧へ戻る", admins_customers_path, class: "btn btn-warning" %>
+      </span>
+      <span>
+        <%= link_to "会員詳細へ戻る", admins_customer_path, class: "btn btn-primary" %>
+      </span>
+    </div>
+
+    <span id="back">
+      <%= link_to "#" do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    </span>
   </div>
 </div>

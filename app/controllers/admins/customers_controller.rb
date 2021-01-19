@@ -10,13 +10,15 @@ class Admins::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+
+    @posted_infos = PostChallenge.where(customer_id: @customer.id).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def favorite
     if admin_signed_in?
       @customer = Customer.find(params[:id])
 
-      @favorites = Favorite.where(customer_id: params[:id]).order(created_at: :desc).page(params[:page]).per(15)
+      @favorites = Favorite.where(customer_id: params[:id]).order(created_at: :desc).page(params[:page]).per(10)
       @browsing_histories = BrowsingHistory.all
 
       #価値観の分析
@@ -39,6 +41,9 @@ class Admins::CustomersController < ApplicationController
       @values_top_1 = @values[0]
       @values_top_2 = @values[1]
       @values_top_3 = @values[2]
+
+      #企業オファー（企業会員にgoodされたチャレンジ内容）
+      @seeks = Seek.order(created_at: :desc).page(params[:page]).per(10)
     else
       redirect_to new_admin_session_path
     end

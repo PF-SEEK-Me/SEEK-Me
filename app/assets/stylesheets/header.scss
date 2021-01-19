@@ -38,6 +38,9 @@
     &--item {
       color: #fff;
     }
+    &--item:hover {
+      border-bottom: 2px solid #E3AB41;
+    }
   }
 
   &__nav-mainItem:last-child {
