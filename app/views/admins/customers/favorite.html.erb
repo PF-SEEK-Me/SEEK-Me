@@ -1,12 +1,13 @@
 
 <!--css => app/assets/stylesheets/admins/customers.scss-->
+<!--helper => app/helpers/application_helper.rb-->
 
 <div class="admins-customers">
   <h3 class="admins-customers__title">Seek Me!</h3>
 
   <div class="admins-customers__favorite">
     <span class="admins-customers__favorite-title">
-      <%= @customer.last_name + @customer.first_name %> さんが大切にしたい価値観　Top 3
+      <%= full_name(@customer) %> さんが大切にしたい価値観　Top 3
     </span>
     <div class="admins-customers__favorite-rank">
       <div class="admins-customers__favorite-rank-non">
@@ -36,7 +37,7 @@
 
     <div class="admins-customers__favorite-offer">
       <span class="admins-customers__favorite-offer-title">
-        <%= @customer.last_name + @customer.first_name %> さんに企業オファーが届いてます！
+        <%= full_name(@customer) %> さんに企業オファーが届いてます！
       </span>
       <table class="table table-hover admins-customers__favorite-offer-table">
         <tr class="">
@@ -50,7 +51,7 @@
           <% if seek.post_challenge.customer.id == @customer.id %>
             <tr>
               <td><%= seek.customer.last_name + seek.customer.first_name %></td>
-              <td><%= seek.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= id_created_at(seek) %></td>
               <td><%= seek.post_challenge.comment %></td>
               <td><%= link_to "オファーを見る", "#", class: "btn btn-sm btn-success" %></td>
             </tr>
@@ -60,7 +61,7 @@
     </div>
 
     <div class="admins-customers__favorite-article">
-      <h4><%= @customer.last_name + @customer.first_name %> さんがいいね！した記事</h4>
+      <h4><%= full_name(@customer) %> さんがいいね！した記事</h4>
       <table class="table table-hover">
         <tr class="admins-customers__favorite-article-table">
           <th class="admins-customers__favorite-article-table--header-1">タイトル</th>
@@ -75,7 +76,7 @@
         <% @favorites.each do |favorite| %>
           <tr>
             <td><%= favorite.article.title %></td>
-            <td><%= favorite.article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td><%= id_created_at(favorite.article) %></td>
             <td><%= favorite.article.genre.name %></td>
             <td>
               <%= favorite.article.category_1 %><br />

@@ -1,5 +1,6 @@
 
 <!--css => app/assets/stylesheets/customers/customers-articles.scss-->
+<!--helper => app/helpers/application_helper.rb-->
 
 <div class="customers-articles">
   <h3 class="customers-articles__title">記事一覧</h3>
@@ -35,7 +36,7 @@
             <% @articles.each do |article| %>
               <tr>
                 <td><%= article.title %></td>
-                <td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= id_created_at(article) %></td>
                 <td><%= article.genre.name %></td>
                 <td>
                   <%= article.category_1 %><br />

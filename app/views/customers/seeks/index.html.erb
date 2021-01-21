@@ -1,11 +1,12 @@
 
 <!--css => app/assets/stylesheets/customers/seeks.scss-->
+<!--helpers => app/helpers/application_helper.rb-->
 
 <div class="seeks">
   <h3 class="seeks__title">Seek You!</h3>
 
   <div class="seeks__index-table">
-    <h4><%= current_customer.last_name + current_customer.first_name %>　さんが気になった学生</h4>
+    <h4><%= full_name(current_customer) %> さんが気になった学生</h4>
     <table class="table table-hover">
       <tr class="seeks__index-table">
         <th class="seeks__index-table--header">氏名</th>
@@ -17,7 +18,7 @@
 
       <% @seeks.each do |seek| %>
         <tr>
-          <td><%= seek.post_challenge.customer.last_name + seek.post_challenge.customer.first_name %></td>
+          <td><%= full_name(seek.post_challenge.customer) %></td>
           <td><%= seek.post_challenge.customer.gender %></td>
           <td><%= seek.post_challenge.customer.age %></td>
           <td>

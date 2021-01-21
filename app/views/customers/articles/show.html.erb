@@ -1,5 +1,6 @@
 
 <!--css => app/assets/stylesheets/customers/customer-articles.scss-->
+<!--helper => app/helpers/application_helper.rb-->
 
 <div class="customers-articles">
   <div class="customers-articles__show">
@@ -9,7 +10,7 @@
 
     <div class="customers-articles__show-form">
       <%= "配信日 " %>
-      <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %>
+      <%= id_created_at(@article) %>
       <% if @article.created_at != @article.updated_at %>
         <%= " || " %>
         <%= "更新日 " %>
