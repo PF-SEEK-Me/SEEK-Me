@@ -1,5 +1,6 @@
 
 <!--css => app/assets/stylesheets/admins/admins-customers.scss-->
+<!--helper => app/helpers/application_helper.rb-->
 
 <div class="admins-customers">
   <h3 class="admins-customers__title">会員一覧</h3>
@@ -35,7 +36,7 @@
                 <span class="admins-customers__index-table--student-false">
                 </span>
               <% end %>
-              <%= customer.last_name + customer.first_name %>
+              <%= full_name(customer) %>
             </td>
             <td><%= customer.gender %></td>
             <td><%= customer.age %></td>
@@ -53,7 +54,7 @@
                 <%= "退会者" %>
               <% end %>
             </td>
-            <td><%= customer.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td><%= id_created_at(customer) %></td>
             <td><%= link_to "詳細を見る", admins_customer_path(customer.id), class: "btn btn-primary" %></td>
           </tr>
         <% end %>

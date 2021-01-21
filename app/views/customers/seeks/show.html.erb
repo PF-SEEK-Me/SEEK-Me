@@ -1,4 +1,6 @@
+
 <!--css => app/assets/stylesheets/customers/seeks.scss-->
+<!--helpers => app/helpers/application_helper.rb-->
 
 <div class="seeks">
   <h3 class="seeks__title">Seek You!</h3>
@@ -11,11 +13,11 @@
           <table class="table table-hover">
             <tr>
               <th>姓　名</th>
-              <td><%= @student_info.last_name + "　" + @student_info.first_name %></td>
+              <td><%= full_name(@student_info) %></td>
             </tr>
             <tr>
               <th>セイ　メイ</th>
-              <td><%= @student_info.last_name_kana + "　" + @student_info.first_name_kana %></td>
+              <td><%= full_name_kana(@student_info) %></td>
             </tr>
             <tr>
               <th>性別</th>
@@ -37,12 +39,12 @@
             </tr>
             <tr>
               <th>登録日</th>
-              <td><%= @student_info.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= id_created_at(@student_info) %></td>
             </tr>
           </table>
 
           <div class="seeks__show-actions">
-            <%= link_to "この学生にオファーを出す", "#", class: "btn btn-danger" %>
+            <%= link_to "この学生にオファーを出す", "#", class: "btn btn-info" %>
           </div>
         </div>
 
@@ -62,7 +64,7 @@
 
             <% @posted_infos.each do |posted_info| %>
               <tr>
-                <td><%= posted_info.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= id_created_at(posted_info) %></td>
                 <td><%= posted_info.comment %></td>
                 <td><%= posted_info.article.title %></td>
                 <td><%= link_to "記事を見る", article_path(posted_info.article.id), class: "btn btn-xs btn-primary" %></td>

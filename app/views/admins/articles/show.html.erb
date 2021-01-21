@@ -1,5 +1,6 @@
 
 <!--css => app/assets/stylesheets/admins/articles.scss-->
+<!--helper => app/helpers/application_helper.rb-->
 
 <div class="admins-articles">
   <h3 class="admins-articles__title">投稿イメージ</h3>
@@ -11,7 +12,7 @@
 
     <div class="admins-articles__show-form">
       <%= "配信日 " %>
-      <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %>
+      <%= id_created_at(@article) %>
       <% if @article.created_at != @article.updated_at %>
         <%= " || " %>
         <%= "更新日 " %>

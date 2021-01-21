@@ -32,7 +32,7 @@
     </nav>
   <% elsif customer_signed_in? %>
     <div class="header__user-name">
-      <%= "ようこそ、#{(current_customer.last_name + current_customer.first_name)} さん!" %>
+      <%= "ようこそ、#{full_name(current_customer)} さん!" %>
     </div>
     <nav class="header__nav">
       <div class="header__nav-main">
