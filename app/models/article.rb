@@ -8,6 +8,10 @@ class Article < ApplicationRecord
     favorites.where(customer_id: customer.id).exists?
   end
 
+  def self.display_page(params_page, num)
+    order(created_at: :desc).page(params_page).per(num)
+  end
+
   attachment :image
 
   validates :genre_id,   presence: true
@@ -126,5 +130,4 @@ class Article < ApplicationRecord
     "予測力": 32,
     "修正力": 33,
   }, _prefix: true
-
 end

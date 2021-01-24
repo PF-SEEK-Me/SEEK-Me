@@ -77,13 +77,17 @@
         <%= link_to "記事一覧へ戻る", articles_path, class: "btn btn-warning" %>
       </span>
       <span class="customers-articles__show-actions--mypage">
-        <%= link_to "My Pageへ", customer_path, class: "btn btn-primary" %>
+        <% if customer_signed_in? %>
+          <%= link_to "My Pageへ", customer_path, class: "btn btn-primary" %>
+        <% else %>
+        <% end %>
       </span>
       <span class="customers-articles__show-actions-seek">
-        <% if current_customer.is_student == true %>
+        <% if customer_signed_in? && current_customer.is_student == true %>
           <%= link_to "Seek Me!へ", favorite_customer_path, class: "btn btn-success" %>
-        <% else %>
+        <% elsif  customer_signed_in? && current_customer.is_student == false %>
           <%= link_to "Seek You!へ", seeks_path, class: "btn btn-success" %>
+        <% else %>
         <% end %>
       </span>
     </div>

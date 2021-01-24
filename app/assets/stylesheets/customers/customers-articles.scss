@@ -32,10 +32,6 @@
       text-align: center;
       background-color: #80D789;
     }
-    &--item-4 {
-      width: 3%;
-      background-color: #80D789;
-    }
   }
 
   &__index-table {
@@ -106,7 +102,7 @@
   &__show-actions {
     text-align: right;
 
-    &--index, --mypage {
+    &--index {
       margin-right: 20px;
     }
     &--mypage {
@@ -144,14 +140,10 @@
     background: linear-gradient(transparent 70%, #E4AC42 70%);
   }
 
-  &__post-challenges-is-student-true {
+  &__post-challenges-is-student {
     border-left: 5px solid #55B17A;
     margin-left: 10px;
-    margin-right: 20px;
-  }
-
-  &__post-challenges-is-student-false {
-    border-left: 5px solid #DA3D58;
+    margin-right: 30px;
   }
 
   &__post-challenges-table-poster {

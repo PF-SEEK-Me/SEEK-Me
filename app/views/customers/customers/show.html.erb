@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-sm-3 customers__show-info">
           <div class="customers__show-update"><%= flash[:customer_update] %></div>
-          <table class="table table-hover">
+          <table class="table">
             <tr>
               <th>姓　名</th>
               <td><%= full_name(current_customer) %></td>
@@ -47,10 +47,10 @@
               <th>カテゴリー</th>
               <td>
                 <% if current_customer.is_student == true %>
-                  <span class="customers__show-is-student-true"></span>
+                  <span class="is-student-color-bar--true"></span>
                   <%= "学生" %>
                 <% else %>
-                  <span class="customers__show-is-student-false"></span>
+                  <span class="is-student-color-bar--false"></span>
                   <%= "企業" %>
                 <% end %>
               </td>
@@ -87,18 +87,16 @@
 
           <table class="table table-hover">
             <tr class="customers__show-table-index">
-              <th class="customers__show-table-index--header-1">チャレンジ<br />投稿日</th>
+              <th class="customers__show-table-index--header-1">チャレンジ投稿日</th>
               <th class="customers__show-table-index--header-2">チャレンジ内容</th>
               <th class="customers__show-table-index--header-2">記事タイトル</th>
-              <th class="customers__show-table-index--header-1"></th>
             </tr>
 
             <% @posted_infos.each do |posted_info| %>
-              <tr>
+              <tr onclick='window.location="<%= article_path(posted_info.article) %>"', class="table-cursor">
                 <td><%= id_created_at(posted_info) %></td>
                 <td><%= posted_info.comment %></td>
                 <td><%= posted_info.article.title %></td>
-                <td><%= link_to "記事を見る", article_path(posted_info.article.id), class: "btn btn-xs btn-primary" %></td>
               </tr>
             <% end %>
           </table>

@@ -35,7 +35,7 @@
 
     <div class="customers__favorite-offer">
       <span class="customers__favorite-offer-title">あなたに企業オファーが届いてます！</span>
-      <table class="table table-hover customers__favorite-offer-table">
+      <table class="table customers__favorite-offer-table">
         <tr class="">
           <th class="customers__favorite-offer-table-header">企業名</th>
           <th class="customers__favorite-offer-table-header">オファー日</th>
@@ -46,7 +46,10 @@
         <% @seeks.each do |seek| %>
           <% if seek.post_challenge.customer.id == current_customer.id %>
             <tr>
-              <td><%= full_name(seek.customer) %></td>
+              <td>
+                <span class="is-student-color-bar--false"></span>
+                <%= full_name(seek.customer) %>
+              </td>
               <td><%= id_created_at(seek) %></td>
               <td><%= seek.post_challenge.comment %></td>
               <td><%= link_to "オファーを見る", "#", class: "btn btn-sm btn-success" %></td>
@@ -66,11 +69,10 @@
           <th class="customers__favorite-table-header--item-2">カテゴリー</th>
           <th class="customers__favorite-table-header--item-2">総閲覧数</th>
           <th class="customers__favorite-table-header--item-2">チャレンジ数</th>
-          <th class="customers__favorite-table-header--item-2"></th>
         </tr>
 
         <% @favorites.each do |favorite| %>
-          <tr>
+          <tr onclick='window.location="<%= article_path(favorite.article) %>"', class="table-cursor">
             <td><%= favorite.article.title %></td>
             <td><%= id_created_at(favorite.article) %></td>
             <td><%= favorite.article.genre.name %></td>
@@ -85,7 +87,6 @@
             <td class="customers__favorite-table--postchallenge">
               <%= favorite.article.post_challenges.count.to_s(:delimited) %> 件
             </td>
-            <td><%= link_to "記事を見る", article_path(favorite.article), class: "btn btn-sm btn-primary" %></td>
           </tr>
         <% end %>
       </table>

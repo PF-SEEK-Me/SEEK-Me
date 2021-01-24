@@ -24,6 +24,23 @@
   box-sizing: border-box;
 }
 
-// sign-up
+/*table trのリンク先カーソル*/
+.table-cursor {
+  cursor: pointer;
+}
+
+/*学生or企業を表すカラーバー*/
+.is-student-color-bar {
+  &--true {
+    border-left: 5px solid #55B17A;
+    margin-right: 2px;
+  }
+  &--false {
+    border-left: 5px solid #DA3D58;
+    margin-right: 2px;
+  }
+}
+
+/*sign-up*/
 @import "admins/admins-sign-up.scss";
 @import "customers/customers-sign-up.scss";

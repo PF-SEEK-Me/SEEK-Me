@@ -19,11 +19,14 @@ class Customer < ApplicationRecord
   has_many :post_challenges,    dependent: :destroy
   has_many :seeks,              dependent: :destroy
 
-  enum gender: {"男性": 0, "女性": 1}
+  enum gender: { "男性": 0, "女性": 1 }
 
-  #有効会員のみログインできるように設定する
+  # 有効会員のみログインできるように設定する
   def active_for_authentication?
-    super && (self.is_active == true)
+    super && (is_active == true)
   end
 
+  def self.display_page(params_page, num)
+    order(created_at: :desc).page(params_page).per(num)
+  end
 end

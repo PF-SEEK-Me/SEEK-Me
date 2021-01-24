@@ -18,6 +18,7 @@ class Customers::PostChallengesController < ApplicationController
   end
 
   private
+
   def post_challenge_params
     params.require(:post_challenge).permit(:customer_id, :article_id, :image, :comment)
   end

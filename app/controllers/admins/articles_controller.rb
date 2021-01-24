@@ -2,20 +2,24 @@ class Admins::ArticlesController < ApplicationController
   def index
     @genres = Genre.where(is_active: true)
 
-    #一覧画面に表示される記事の条件分岐
-    if self.params[:title] #title検索による記事絞り込み検索
-      @articles = Article.where("title LIKE ?", "%#{params[:title]}%").order(created_at: :desc).page(params[:page]).per(15)
-    elsif params[:genre_select] #(sidebar)ジャンルによる記事絞り込み
-      @articles = Article.where(genre_id: params[:genre_select].to_i).order(created_at: :desc).page(params[:page]).per(15)
-    elsif params[:genre_article] #ジャンルindex画面からの遷移（各ジャンルの配信記事本数からの遷移）
-      @articles = Article.where(genre_id: params[:genre_article].to_i).order(created_at: :desc).page(params[:page]).per(15)
+    # 一覧画面に表示される記事の条件分岐
+    ## title検索による記事絞り込み検索
+    if params[:title]
+      @articles = Article.where("title LIKE ?", "%#{params[:title]}%").display_page(params[:page], 20)
+    ## (sidebar)ジャンルによる記事絞り込み
+    elsif params[:genre_select]
+      @articles = Article.where(genre_id: params[:genre_select].to_i).display_page(params[:page], 20)
+    # ジャンルindex画面からの遷移（各ジャンルの配信記事本数からの遷移）
+    elsif params[:genre_article]
+      @articles = Article.where(genre_id: params[:genre_article].to_i).display_page(params[:page], 20)
     else
-      @articles = Article.order(created_at: :desc).page(params[:page]).per(15)
+      @articles = Article.display_page(params[:page], 20)
     end
 
-    #閲覧履歴
+    # 閲覧履歴
     @browsing_histories = BrowsingHistory.all
-    #いいね
+
+    # いいね
     @favorites = Favorite.all
   end
 
@@ -54,8 +58,8 @@ class Admins::ArticlesController < ApplicationController
   end
 
   private
+
   def article_params
     params.require(:article).permit(:genre_id, :title, :image, :text, :category_1, :category_2, :category_3, :is_active)
   end
-
 end

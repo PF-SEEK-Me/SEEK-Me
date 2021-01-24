@@ -7,6 +7,10 @@ class PostChallenge < ApplicationRecord
     seeks.where(customer_id: customer.id).exists?
   end
 
+  def self.display_page(params_page, num)
+    order(created_at: :desc).page(params_page).per(num)
+  end
+
   attachment :image
 
   validates :comment, presence: true

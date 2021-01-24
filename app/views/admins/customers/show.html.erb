@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-3 admins-customers__show-info">
-          <table class="table table-hover">
+          <table class="table">
             <tr>
               <th>姓　名</th>
               <td><%= full_name(@customer) %></td>
@@ -46,10 +46,10 @@
               <th>カテゴリー</th>
               <td>
                 <% if @customer.is_student == true %>
-                  <span class="admins-customers__show-table--student-true"></span>
+                  <span class="is-student-color-bar--true"></span>
                   <%= "学生" %>
                 <% else %>
-                  <span class="admins-customers__show-table--student-false"></span>
+                  <span class="is-student-color-bar--false"></span>
                   <%= "企業" %>
                 <% end %>
               </td>
@@ -79,18 +79,16 @@
 
           <table class="table table-hover">
             <tr class="admins-customers__show-table">
-              <th class="admins-customers__show-table--header">チャレンジ<br />投稿日</th>
-              <th class="admins-customers__show-table--header">チャレンジ内容</th>
-              <th class="admins-customers__show-table--header">記事タイトル</th>
-              <th class="admins-customers__show-table--header"></th>
+              <th class="admins-customers__show-table--header-1">チャレンジ投稿日</th>
+              <th class="admins-customers__show-table--header-2">チャレンジ内容</th>
+              <th class="admins-customers__show-table--header-2">記事タイトル</th>
             </tr>
 
             <% @posted_infos.each do |posted_info| %>
-              <tr>
+              <tr onclick='window.location="<%= admins_article_path(posted_info.article) %>"', class="table-cursor">
                 <td><%= id_created_at(posted_info) %></td>
                 <td><%= posted_info.comment %></td>
                 <td><%= posted_info.article.title %></td>
-                <td><%= link_to "記事を見る", admins_article_path(posted_info.article.id), class: "btn btn-xs btn-primary" %></td>
               </tr>
             <% end %>
           </table>
