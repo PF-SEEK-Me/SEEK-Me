@@ -41,7 +41,7 @@
       <th class="customers-articles__post-challenges-table-image">投稿画像</th>
       <th class="customers-articles__post-challenges-table-challenge">チャレンジ</th>
       <th class="customers-articles__post-challenges-table-action">
-        <% if current_customer.is_student == false %>
+        <% if customer_signed_in? && current_customer.is_student == false %>
           Seek You!
         <% end %>
       </th>
@@ -64,7 +64,7 @@
         <td class="customers-articles__post-challenges--actions">
           <% if post_challenge.customer == current_customer %>
             <%= link_to "削除", article_post_challenge_path(post_challenge.article, post_challenge), method: :delete, class: "btn btn-sm btn-danger" %>
-          <% elsif current_customer.is_student == false %>
+          <% elsif customer_signed_in? && current_customer.is_student == false %>
             <% if post_challenge.customer.is_student == true %>
               <% if post_challenge.seeked_by?(current_customer) %>
                 <i class="fas fa-thumbs-up", area-hidden="true", style="color: #55B17A; font-size: 18px;"></i>

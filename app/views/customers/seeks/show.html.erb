@@ -49,6 +49,30 @@
         </div>
 
         <div class="col-sm-9">
+          <div class="seeks__show-student">
+            <span class="seeks__show-student-title">
+              <%= full_name(@student_info) %> さんの興味分野
+            </span>
+
+            <div class="seeks__show-ranking">
+              <div class="seeks__show-ranking-item">
+                <span class="seeks__show-ranking-item--tag">Top 1: </span>
+                <%= @interest_1 %>
+              </div>
+              <div class="seeks__show-ranking-item">
+                <span class="seeks__show-ranking-item--tag">Top 2: </span>
+                <%= @interest_2 %>
+              </div>
+              <div>
+                <span class="seeks__show-ranking-item--tag">Top 3: </span>
+                <%= @interest_3 %>
+              </div>
+            </div>
+
+            <div class=""></div>
+
+          </div>
+
           <div>
             <span class="seeks__show-challenge-count">総チャレンジ数：</span>
             <span><%= @posted_infos.count.to_s(:delimited) %></span>

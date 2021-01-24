@@ -45,6 +45,26 @@
   }
 
   /*show*/
+  &__show-student-title {
+    font-size: 20px;
+    border-bottom: 3px solid #DE3E5D;
+  }
+
+  &__show-ranking {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+  }
+
+  &__show-ranking-item {
+    margin-right: 50px;
+
+    &--tag {
+      font-weight: bold;
+    }
+  }
+
   &__show-challenge-count {
     font-weight: bold;
   }
