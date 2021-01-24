@@ -1,6 +1,7 @@
 class Customers::SeeksController < ApplicationController
-  def index#企業用My Page内のSeek You!ページ
-    @seeks = Seek.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(15)
+  # 企業用My Page内のSeek You!ページ
+  def index
+    @seeks = Seek.where(customer_id: current_customer.id).display_page(params[:page], 15)
   end
 
   def show
@@ -8,7 +9,7 @@ class Customers::SeeksController < ApplicationController
 
     @student_info = Customer.find(@seek.post_challenge.customer.id)
 
-    @posted_infos = PostChallenge.where(customer_id: @seek.post_challenge.customer.id).order(created_at: :desc).page(params[:page]).per(15)
+    @posted_infos = PostChallenge.where(customer_id: @seek.post_challenge.customer.id).display_page(params[:page], 15)
   end
 
   def create
@@ -21,6 +22,7 @@ class Customers::SeeksController < ApplicationController
   end
 
   private
+
   def seek_params
     params.permit(:customer_id, :article_id, :post_challenge_id)
   end

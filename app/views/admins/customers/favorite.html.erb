@@ -39,7 +39,7 @@
       <span class="admins-customers__favorite-offer-title">
         <%= full_name(@customer) %> さんに企業オファーが届いてます！
       </span>
-      <table class="table table-hover admins-customers__favorite-offer-table">
+      <table class="table admins-customers__favorite-offer-table">
         <tr class="">
           <th class="admins-customers__favorite-offer-table--header">企業名</th>
           <th class="admins-customers__favorite-offer-table--header">オファー日</th>
@@ -70,11 +70,10 @@
           <th class="admins-customers__favorite-article-table--header-2">カテゴリー</th>
           <th class="admins-customers__favorite-article-table--header-3">総閲覧数</th>
           <th class="admins-customers__favorite-article-table--header-3">チャレンジ数</th>
-          <th class="admins-customers__favorite-article-table--header-2"></th>
         </tr>
 
         <% @favorites.each do |favorite| %>
-          <tr>
+          <tr onclick='window.location="<%=admins_article_path(favorite.article) %>"', class="table-cursor">
             <td><%= favorite.article.title %></td>
             <td><%= id_created_at(favorite.article) %></td>
             <td><%= favorite.article.genre.name %></td>
@@ -89,7 +88,6 @@
             <td class="admins-customers__favorite-article-table--postchallenge">
               <%= favorite.article.post_challenges.count.to_s(:delimited) %> 件
             </td>
-            <td><%= link_to "記事を見る", admins_article_path(favorite.article.id), class: "btn btn-sm btn-primary" %></td>
           </tr>
         <% end %>
       </table>

@@ -33,14 +33,13 @@
               <th class="admins-articles__index-table--header-2">配信日</th>
               <th class="admins-articles__index-table--header-2">ジャンル</th>
               <th class="admins-articles__index-table--header-2">カテゴリー</th>
-              <th class="admins-articles__index-table--header-2">閲覧数</th>
+              <th class="admins-articles__index-table--header-2">総閲覧数</th>
               <th class="admins-articles__index-table--header-2">いいね数(率)</th>
-              <th class="admins-articles__index-table--header-2">ステータス</th>
-              <th class="admins-articles__index-table--header-3"></th>
+              <th class="admins-articles__index-table--header-3">ステータス</th>
             </tr>
 
             <% @articles.each do |article| %>
-              <tr>
+              <tr onclick='window.location="<%= admins_article_path(article) %>"', class="table-cursor">
                 <td><%= article.title %></td>
                 <td><%= id_created_at(article) %></td>
                 <td><%= article.genre.name %></td>
@@ -62,7 +61,6 @@
                     <%= "配信停止" %>
                   <% end %>
                 </td>
-                <td><%= link_to "詳細を見る", admins_article_path(article.id), class: "btn btn-sm btn-primary" %></td>
               </tr>
             <% end %>
           </table>

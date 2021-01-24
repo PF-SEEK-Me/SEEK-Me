@@ -19,7 +19,7 @@
 
 
 /*global $*/
-$(function() {
+$(document).on('turbolinks:load', function(){
   $('#back').on('click', function(event){
     $('body, html').animate({
       scrollTop:0

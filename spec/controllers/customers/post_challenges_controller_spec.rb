@@ -9,8 +9,8 @@ RSpec.describe Customers::PostChallengesController, type: :controller do
             post_challenge: {
               customer_id: 1,
               article_id: 1,
-              comment: "テストテストテスト"
-            }
+              comment: "テストテストテスト",
+            },
           }
         }
       end
@@ -23,8 +23,8 @@ RSpec.describe Customers::PostChallengesController, type: :controller do
             post_challenge: {
               customer_id: 1,
               article_id: 2,
-              comment: nil
-            }
+              comment: nil,
+            },
           }
         }
       end

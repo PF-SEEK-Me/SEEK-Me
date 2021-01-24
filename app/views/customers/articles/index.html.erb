@@ -30,11 +30,10 @@
               <th class="customers-articles__index-table-header--item-2">総閲覧数</th>
               <th class="customers-articles__index-table-header--item-3">いいね!</th>
               <th class="customers-articles__index-table-header--item-2">チャレンジ数</th>
-              <th class="customers-articles__index-table-header--item-4"></th>
             </tr>
 
             <% @articles.each do |article| %>
-              <tr>
+              <tr onclick='window.location="<%= article_path(article) %>"', class="table-cursor">
                 <td><%= article.title %></td>
                 <td><%= id_created_at(article) %></td>
                 <td><%= article.genre.name %></td>
@@ -58,7 +57,6 @@
                 <td class="customers-articles__index-table--postchallenge">
                   <%= article.post_challenges.count.to_s(:delimited) %> 件
                 </td>
-                <td><%= link_to "記事を見る", article_path(article), class: "btn btn-sm btn-primary" %></td>
               </tr>
             <% end %>
           </table>

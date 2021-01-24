@@ -21,7 +21,20 @@
 
   &__index-table {
 
-    &--header {
+    &--header-1 {
+      width: 15%;
+      background-color: #80D789;
+    }
+    &--header-2 {
+      width: 5%;
+      background-color: #80D789;
+    }
+    &--header-3 {
+      background-color: #80D789;
+    }
+    &--header-4 {
+      width: 15%;
+      text-align: center;
       background-color: #80D789;
     }
   }

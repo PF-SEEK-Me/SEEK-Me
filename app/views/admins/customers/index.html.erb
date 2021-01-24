@@ -23,17 +23,16 @@
           <th class="admins-customers__index-table--header">カテゴリー</th>
           <th class="admins-customers__index-table--header">ステータス</th>
           <th class="admins-customers__index-table--header">登録日</th>
-          <th class="admins-customers__index-table--header"></th>
         </tr>
 
         <% @customers.each do |customer| %>
-          <tr>
+          <tr onclick='window.location="<%= admins_customer_path(customer) %>"', class="table-cursor">
             <td>
               <% if customer.is_student == true %>
-                <span class="admins-customers__index-table--student-true">
+                <span class="is-student-color-bar--true">
                 </span>
               <% else %>
-                <span class="admins-customers__index-table--student-false">
+                <span class="is-student-color-bar--false">
                 </span>
               <% end %>
               <%= full_name(customer) %>
@@ -44,7 +43,7 @@
               <% if customer.is_student == true %>
                 <%= "学生" %>
               <% else %>
-                <%= "社会人" %>
+                <%= "企業" %>
               <% end %>
             </td>
             <td>
@@ -55,7 +54,6 @@
               <% end %>
             </td>
             <td><%= id_created_at(customer) %></td>
-            <td><%= link_to "詳細を見る", admins_customer_path(customer.id), class: "btn btn-primary" %></td>
           </tr>
         <% end %>
       </table>

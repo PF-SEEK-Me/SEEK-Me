@@ -31,8 +31,8 @@
 <div class="customers-articles__post-challenges">
   <span class="customers-articles__post-challenges-title">みんなのチャレンジ！</span>
   <p>
-    <span class="customers-articles__post-challenges-is-student-true">学生の方</span>
-    <span class="customers-articles__post-challenges-is-student-false">企業の方</span>
+    <span class="customers-articles__post-challenges-is-student">学生の方</span>
+    <span class="is-student-color-bar--false">企業の方</span>
   </p>
   <table class="table table-hover">
     <tr>
@@ -50,9 +50,9 @@
       <tr>
         <td>
           <% if post_challenge.customer.is_student == true %>
-            <span class="customers-articles__post-challenges-table-is-student-true"></span>
+            <span class="is-student-color-bar--true"></span>
           <% else %>
-            <span class="customers-articles__post-challenges-table-is-student-false"></span>
+            <span class="is-student-color-bar--false"></span>
           <% end %>
           <%= post_challenge.customer.last_name + post_challenge.customer.first_name %>
         </td>
