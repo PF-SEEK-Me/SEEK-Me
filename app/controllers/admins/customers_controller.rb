@@ -1,4 +1,6 @@
 class Admins::CustomersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     if params[:last_name]
       @customers = Customer.where("last_name LIKE ?", "%#{params[:last_name]}%").display_page(params[:page], 15)

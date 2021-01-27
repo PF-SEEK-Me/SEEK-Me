@@ -159,15 +159,20 @@
       width: 12%;
       background-color: #80D789;
     }
+    &--item-3 {
+      width: 12%;
+      background-color: #80D789;
+      text-align: center;
+    }
   }
 
   &__favorite-table {
 
     &--pv {
-      text-align: right;
+      text-align: center;
     }
     &--postchallenge {
-      text-align: right;
+      text-align: center;
     }
   }
 
