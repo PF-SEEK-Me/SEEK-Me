@@ -24,6 +24,16 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  position: relative;
+  min-height: 100%;
+}
+
 /*table trのリンク先カーソル*/
 .table-cursor {
   cursor: pointer;
