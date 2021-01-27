@@ -30,7 +30,7 @@
 
 ### 機能一覧
 
-＜スプレッドシートのLink＞
+https://docs.google.com/spreadsheets/d/1OlBcvfKwiKLxYtYJEb1gGM7WqskN0TQNZgGjTpP_xsA/edit?usp=sharing
 
 ## 開発環境
 
