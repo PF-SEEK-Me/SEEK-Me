@@ -1,0 +1,110 @@
+
+<!--css => app/assets/stylesheets/admins/admins-customers.scss-->
+<!--helper => app/helpers/application_helper.rb-->
+
+<div class="admins-customers">
+  <h3 class="admins-customers__title">会員詳細</h3>
+
+  <div class="admins-customers__show">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 admins-customers__show-info">
+          <table class="table">
+            <tr>
+              <th>姓　名</th>
+              <td><%= full_name(@customer) %></td>
+            </tr>
+            <tr>
+              <th>セイ　メイ</th>
+              <td><%= full_name_kana(@customer) %></td>
+            </tr>
+            <tr>
+              <th>性別</th>
+              <td><%= @customer.gender %></td>
+            </tr>
+            <tr>
+              <th>年齢</th>
+              <td><%= @customer.age %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= @customer.email %></td>
+            </tr>
+            <tr>
+              <th>郵便番号</th>
+              <td><%= @customer.postal_code %></td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td><%= @customer.address %></td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td><%= @customer.telephone_number %></td>
+            </tr>
+            <tr>
+              <th>カテゴリー</th>
+              <td>
+                <% if @customer.is_student == true %>
+                  <span class="is-student-color-bar--true"></span>
+                  <%= "学生" %>
+                <% else %>
+                  <span class="is-student-color-bar--false"></span>
+                  <%= "企業" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>ステータス</th>
+              <td>
+                <% if @customer.is_active == true %>
+                  <%= "有効会員" %>
+                <% else %>
+                  <%= "退会者" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>登録日</th>
+              <td><%= id_created_at(@customer) %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-sm-9">
+          <div>
+            <span class="admins-customers__show-challenge-count">総チャレンジ投稿数：</span>
+            <span><%= @posted_infos.count.to_s(:delimited) %></span>
+          </div>
+
+          <table class="table table-hover">
+            <tr class="admins-customers__show-table">
+              <th class="admins-customers__show-table--header-1">チャレンジ投稿日</th>
+              <th class="admins-customers__show-table--header-2">チャレンジ内容</th>
+              <th class="admins-customers__show-table--header-2">記事タイトル</th>
+            </tr>
+
+            <% @posted_infos.each do |posted_info| %>
+              <tr onclick='window.location="<%= admins_article_path(posted_info.article) %>"', class="table-cursor">
+                <td><%= id_created_at(posted_info) %></td>
+                <td><%= posted_info.comment %></td>
+                <td><%= posted_info.article.title %></td>
+              </tr>
+            <% end %>
+          </table>
+
+          <div><%= paginate @posted_infos %></div>
+
+          <div class="admins-customers__show-actions">
+            <span class="admins-customers__show-actions--back">
+              <%= link_to "会員一覧へ戻る", admins_customers_path, class: "btn btn-warning" %>
+            </span>
+            <span class="admins-customers__show-actions--favorite">
+              <%= link_to "Seekへ", admins_favorite_customer_path, class: "btn btn-success" %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

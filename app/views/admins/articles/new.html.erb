@@ -1,0 +1,73 @@
+
+<!--css => app/assets/stylesheets/admins/admins-articles.scss-->
+
+<div class="admins-articles">
+  <h3 class="admins-articles__title">記事を投稿する</h3>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <%= render "admins/articles/sidebar.html.erb", genres: @genres %>
+      </div>
+
+      <div class="col-sm-9">
+
+        <div class="admins-articles__new">
+          <div class="admins-articles__new-error">
+            <%= flash[:admins_article_error] %>
+          </div>
+
+          <%= form_with model: @article, url: admins_articles_path, method: :post, local: true do |f| %>
+            <div class="admins-articles__new-form">
+              <%= f.label "タイトル" %><br />
+              <%= f.text_field :title, autofocus: true, placeholder: "タイトル", style: "width: 500px;" %>
+            </div>
+
+            <div class="admins-articles__new-form">
+              <%= f.label "ジャンル" %><br />
+              <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--ジャンルを選択--" %>
+            </div>
+
+            <div class="admins-articles__new-form">
+              <%= f.label "記事画像" %><br />
+              <%= attachment_image_tag @article, :image %>
+              <%= f.attachment_field :image %>
+            </div>
+
+            <div class="admins-articles__new-form">
+              <%= f.label "本文" %><br />
+              <%= f.text_area :text, placeholder: "記事本文", style: "width: 500px; height: 200px;" %>
+            </div>
+
+            <div class="admins-articles__new-form admins-articles__new-form-category">
+              <div class="admins-articles__new-form-category--1">
+                <%= f.label "カテゴリー１" %><br />
+                <%= f.select :category_1, Article.category_1s.keys.to_a, include_blank: true %>
+              </div>
+              <div class="admins-articles__new-form-category--1">
+                <%= f.label "カテゴリー２" %><br />
+                <%= f.select :category_2, Article.category_2s.keys.to_a, include_blank: true %>
+              </div>
+              <div class="">
+                <%= f.label "カテゴリー３" %><br />
+                <%= f.select :category_3, Article.category_3s.keys.to_a, include_blank: true %>
+              </div>
+            </div>
+
+            <div class="admins-articles__new-form">
+              <%= f.label "配信中 " %>
+              <%= f.radio_button :is_active, true, checked: true %>
+              <%= "　　　　" %>
+              <%= f.label "配信停止 " %>
+              <%= f.radio_button :is_active, false %>
+            </div>
+
+            <div class="admins-articles__new-actions">
+              <%= f.submit "投稿する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

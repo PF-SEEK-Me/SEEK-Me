@@ -1,0 +1,66 @@
+
+<!--css => app/assets/stylesheets/admins/admins-customers.scss-->
+<!--helper => app/helpers/application_helper.rb-->
+
+<div class="admins-customers">
+  <h3 class="admins-customers__title">会員一覧</h3>
+
+  <div class="admins-customers__index">
+    <div class="admins-customers__search">
+      <%= form_tag(admins_customers_path, method: :get) do %>
+        <%= "会員検索" %>
+        <%= text_field_tag :last_name, "", placeholder: "氏名（姓）検索" %>
+        <%= submit_tag "検索", class: "btn btn-sm btn-primary" %>
+      <% end %>
+    </div>
+
+    <div class="admins-customers__index-table">
+      <table class="table table-hover">
+        <tr class="admins-customers__index-table-header">
+          <th class="admins-customers__index-table--header">氏名</th>
+          <th class="admins-customers__index-table--header">性別</th>
+          <th class="admins-customers__index-table--header">年齢</th>
+          <th class="admins-customers__index-table--header">カテゴリー</th>
+          <th class="admins-customers__index-table--header">ステータス</th>
+          <th class="admins-customers__index-table--header">登録日</th>
+        </tr>
+
+        <% @customers.each do |customer| %>
+          <tr onclick='window.location="<%= admins_customer_path(customer) %>"', class="table-cursor">
+            <td>
+              <% if customer.is_student == true %>
+                <span class="is-student-color-bar--true">
+                </span>
+              <% else %>
+                <span class="is-student-color-bar--false">
+                </span>
+              <% end %>
+              <%= full_name(customer) %>
+            </td>
+            <td><%= customer.gender %></td>
+            <td><%= customer.age %></td>
+            <td>
+              <% if customer.is_student == true %>
+                <%= "学生" %>
+              <% else %>
+                <%= "企業" %>
+              <% end %>
+            </td>
+            <td>
+              <% if customer.is_active == true %>
+                <%= "有効会員" %>
+              <% else %>
+                <%= "退会者" %>
+              <% end %>
+            </td>
+            <td><%= id_created_at(customer) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="admins-customers__paginate">
+      <%= paginate @customers %>
+    </div>
+  </div>
+</div>

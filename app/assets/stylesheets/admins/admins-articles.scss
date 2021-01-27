@@ -1,0 +1,133 @@
+// Place all the styles related to the admins/Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.admins-articles {
+  width: 90%;
+  margin: 50px auto;
+
+  /*index*/
+  &__title {
+    margin-bottom: 30px;
+    margin-left: 5%;
+  }
+
+  &__index-table {
+
+    &--header-1 {
+      background-color: #80D789;
+    }
+    &--header-2 {
+      width: 11%;
+      background-color: #80D789;
+    }
+    &--header-3 {
+      width: 11%;
+      text-align: center;
+      background-color: #80D789;
+    }
+  }
+
+  &__index-table {
+
+    &--pv {
+      text-align: center;
+    }
+    &--favorite {
+      text-align: center;
+    }
+    &--status {
+      text-align: center;
+    }
+  }
+
+  &__search {
+    margin-bottom: 20px;
+  }
+
+  &__create {
+    font-size: 30px;
+    text-align: right
+  }
+
+  /*sidebar*/
+  &__sidebar-table-header {
+    background-color: #fff19b;
+  }
+
+  &__sidebar-table-item {
+    text-align: center;
+  }
+
+  /*new*/
+  &__new-error {
+    color: red;
+  }
+
+  &__new-form {
+    margin-bottom: 30px;
+  }
+
+  &__new-form-category {
+    display: flex;
+
+    &--1 {
+      margin-right: 50px;
+    }
+  }
+
+  /*edit*/
+  &__edit {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  &__edit-form {
+    margin-bottom: 30px;
+  }
+
+  &__edit-form-category {
+    display: flex;
+
+    &--1 {
+      margin-right: 50px;
+    }
+  }
+
+  /*show*/
+  &__show {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__show-form {
+    margin-bottom: 30px;
+
+    &--image {
+      width: 640px;
+      margin: 0 auto 30px auto;
+    }
+  }
+
+  &__show-form-title {
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  &__show-form-category {
+    display: flex;
+
+    &--1 {
+      border: 1px solid #000;
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-right: 10px;
+      background-color: #A9E49C;
+    }
+  }
+
+  &__show-form-status {
+    font-weight: bold;
+  }
+}

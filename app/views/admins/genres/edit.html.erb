@@ -1,0 +1,30 @@
+
+<!--css => app/assets/stylesheets/admins/genres.scss-->
+
+<div class="genres">
+  <h3>ジャンル編集</h3>
+
+  <div class="genres__new">
+    <%= form_with model: @genre, url: admins_genre_path, method: :patch, local: true do |f| %>
+      <div class="genres__new-main">
+        <div class="genres__new-main-name">
+          <%= f.label "ジャンル" %>
+          <span class="genres__new-main-name-form"><%= f.text_field :name %></span>
+        </div>
+
+        <div class="genres__new-main-is-active">
+          <%= f.label "有効 " %>
+          <span class="genres__new-main-is-active-form"><%= f.radio_button :is_active, true %></span>
+        </div>
+
+        <div class="genres__new-main-is-active">
+          <%= f.label "無効 " %>
+          <span class="genres__new-main-is-active-form"><%= f.radio_button :is_active, false %></span>
+        </div>
+        <div class="genres__new-main-button">
+          <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

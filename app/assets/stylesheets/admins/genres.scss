@@ -1,0 +1,67 @@
+// Place all the styles related to the admins/Genres controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*index, edit*/
+.genres {
+  width: 80%;
+  margin: 50px auto;
+
+  &__new {
+    margin-top: 30px;
+    margin-left: 30px;
+  }
+
+  &__new-error {
+    color: red;
+  }
+
+  &__new-main {
+    display: flex;
+  }
+
+  &__new-main-name-form {
+    margin-left: 20px;
+  }
+
+  &__new-main-is-active {
+    margin-left: 30px;
+  }
+
+  &__new-main-is-active-form {
+    margin-right: 20px;
+  }
+
+  &__new-main-button {
+    margin-left: 30px;
+  }
+
+
+  /*genres__index-table*/
+  &__index {
+    width: 60%;
+    margin-top: 30px;
+    margin-left: 30px;
+  }
+
+  &__index-table {
+
+    &--header-1 {
+      background-color: #80D789;
+    }
+    &--header-2 {
+      text-align: center;
+      background-color: #80D789;
+    }
+    &--article {
+      text-align: center;
+    }
+    &--status {
+      text-align: center;
+    }
+    &--action {
+      text-align: center;
+    }
+  }
+}

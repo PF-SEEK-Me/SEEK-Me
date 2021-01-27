@@ -1,0 +1,18 @@
+.footer {
+  height: 50px;
+  background-color: #353741;
+  display: flex;
+
+  &__contact {
+    color: #fff;
+    line-height: 50px;
+    margin-left: 3%;
+  }
+
+  &__copyright {
+    color: #fff;
+    text-align: right;
+    line-height: 50px;
+    margin-left: 80%;
+  }
+}

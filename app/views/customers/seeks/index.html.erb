@@ -1,0 +1,41 @@
+
+<!--css => app/assets/stylesheets/customers/seeks.scss-->
+<!--helpers => app/helpers/application_helper.rb-->
+
+<div class="seeks">
+  <h3 class="seeks__title">Seek You!</h3>
+
+  <div class="seeks__index-table">
+    <h4><%= full_name(current_customer) %> さんが気になった学生</h4>
+    <table class="table table-hover">
+      <tr class="seeks__index-table">
+        <th class="seeks__index-table--header-1">氏名</th>
+        <th class="seeks__index-table--header-2">性別</th>
+        <th class="seeks__index-table--header-2">年齢</th>
+        <th class="seeks__index-table--header-3">チャレンジ内容</th>
+        <th class="seeks__index-table--header-4"></th>
+      </tr>
+
+      <% @seeks.each do |seek| %>
+        <tr>
+          <td>
+            <span class="is-student-color-bar--true"></span>
+            <%= full_name(seek.post_challenge.customer) %>
+          </td>
+          <td><%= seek.post_challenge.customer.gender %></td>
+          <td><%= seek.post_challenge.customer.age %></td>
+          <td>
+            <%= seek.post_challenge.comment %>
+          </td>
+          <td><%= link_to "この学生をチェック", seek_path(seek.id), class: "btn btn-sm btn-primary" %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @seeks %>
+
+    <div class="seeks__index-actions">
+      <%=link_to "My Pageへ戻る", customer_path, class: "btn btn btn-warning" %>
+    </div>
+  </div>
+</div>

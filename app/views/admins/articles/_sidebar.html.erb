@@ -1,0 +1,18 @@
+
+<!--css => app/assets/stylesheets/admins/admins-articles.scss-->
+
+<div class="admins-articles__sidebar">
+  <table class="table table-bordered">
+    <tr class="admins-articles__sidebar-table-header">
+      <th class="admins-articles__sidebar-table-item"><%= "ジャンル" %></th>
+    </tr>
+
+    <% genres.each do |genre| %>
+      <% if genre.is_active == true %>
+        <tr>
+          <td><%= link_to genre.name, admins_articles_path(genre_select: genre.id) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

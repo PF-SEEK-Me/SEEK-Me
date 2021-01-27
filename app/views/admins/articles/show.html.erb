@@ -1,0 +1,74 @@
+
+<!--css => app/assets/stylesheets/admins/articles.scss-->
+<!--helper => app/helpers/application_helper.rb-->
+
+<div class="admins-articles">
+  <h3 class="admins-articles__title">投稿イメージ</h3>
+
+  <div class="admins-articles__show">
+    <div class="admins-articles__show-form admins-articles__show-form-title">
+      <%= @article.title %>
+    </div>
+
+    <div class="admins-articles__show-form">
+      <%= "配信日 " %>
+      <%= id_created_at(@article) %>
+      <% if @article.created_at != @article.updated_at %>
+        <%= " || " %>
+        <%= "更新日 " %>
+        <%= @article.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <% end %>
+    </div>
+
+    <div class="admins-articles__show-form admins-articles__show-form-category">
+      <div class="admins-articles__show-form-category--1">
+        <%= @article.category_1 %>
+      </div>
+      <% if @article.category_2 != nil %>
+        <div class="admins-articles__show-form-category--1">
+          <%= @article.category_2 %>
+        </div>
+      <% end %>
+      <% if @article.category_3 != nil %>
+        <div class="admins-articles__show-form-category--1">
+          <%= @article.category_3 %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="admins-articles__show-form admins-articles__show-form--image">
+      <%= attachment_image_tag @article, :image, size: "640x350" %>
+    </div>
+
+    <div class="admins-articles__show-form">
+      <%= @article.text %>
+    </div>
+
+    <div class="admins-articles__show-form">
+      ----------（以下、ユーザー画面には表示されません）----------
+    </div>
+
+    <div class="admins-articles__show-form admins-articles__show-form-label">
+      <div class="">
+        <span class="admins-articles__show-form-status">ステータス：</span>
+        <% if @article.is_active == true %>
+          <%= "配信中" %>
+        <% else %>
+          <%= "配信停止" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="admins-articles__show-actions">
+      <%= link_to "記事を編集する", edit_admins_article_path(@article.id), class: "btn btn-primary" %>
+      <span><%= link_to "記事一覧へ戻る", admins_articles_path, class: "btn btn-warning" %></span>
+      <span><%= link_to "会員情報一覧へ", admins_customers_path, class: "btn btn-info" %></span>
+    </div>
+  </div>
+
+  <span id="back">
+    <%= link_to "#" do %>
+      <i class="fas fa-arrow-circle-up"></i>
+    <% end %>
+  </span>
+</div>

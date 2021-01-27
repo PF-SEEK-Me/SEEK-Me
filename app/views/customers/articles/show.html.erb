@@ -1,0 +1,101 @@
+
+<!--css => app/assets/stylesheets/customers/customer-articles.scss-->
+<!--helper => app/helpers/application_helper.rb-->
+
+<div class="customers-articles">
+  <div class="customers-articles__show">
+    <div class="customers-articles__show-form customers-articles__show-form-title">
+      <%= @article.title %>
+    </div>
+
+    <div class="customers-articles__show-form">
+      <%= "配信日 " %>
+      <%= id_created_at(@article) %>
+      <% if @article.created_at != @article.updated_at %>
+        <%= " || " %>
+        <%= "更新日 " %>
+        <%= @article.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <% end %>
+      <%= " || " %>
+      <%= @article.post_challenges.count.to_s(:delimited) %>件のチャレンジ
+    </div>
+
+    <div class="customers-articles__show-form customers-articles__show-form-category">
+      <div class="customers-articles__show-form-category--1">
+        <%= @article.category_1 %>
+      </div>
+      <% if @article.category_2 != nil %>
+        <div class="customers-articles__show-form-category--1">
+          <%= @article.category_2 %>
+        </div>
+      <% end %>
+      <% if @article.category_3 != nil %>
+        <div class="customers-articles__show-form-category--1">
+          <%= @article.category_3 %>
+        </div>
+      <% end %>
+
+      <% if customer_signed_in? && current_customer.is_student == true %>
+        <div class="customers-articles__show-form-favorite">
+          <% if @article.favorited_by?(current_customer) %>
+            <%= link_to article_favorite_path(@article), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= @article.favorites.count %> いいね！
+            <% end %>
+          <% else %>
+            <%= link_to article_favorite_path(@article), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @article.favorites.count %> いいね！
+            <% end %>
+          <% end %>
+        </div>
+      <% elsif customer_signed_in? && current_customer.is_student == false %>
+        <div></div>
+      <% else %>
+        <div class="customers-articles__show--non-customer">
+          <%= "**会員登録すると、「いいね！」機能が使えるようになります！**" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="customers-articles__show-contents">
+      <div class="customers-articles__show-form customers-articles__show-image">
+        <%= attachment_image_tag @article, :image, size: "640x350" %>
+      </div>
+
+      <div class="customers-articles__show-form">
+        <%= @article.text %>
+      </div>
+
+　　　<!--チャレンジ投稿・一覧機能(_post_challenge.html.erb)-->
+      <%= render "customers/articles/post_challenge.html.erb", {article: @article, post_challenges: @post_challenges, post_challenge: @post_challenge} %>
+
+    </div>
+
+    <div class="customers-articles__show-actions">
+      <span class="customers-articles__show-actions--index">
+        <%= link_to "記事一覧へ戻る", articles_path, class: "btn btn-warning" %>
+      </span>
+      <span class="customers-articles__show-actions--mypage">
+        <% if customer_signed_in? %>
+          <%= link_to "My Pageへ", customer_path, class: "btn btn-primary" %>
+        <% else %>
+        <% end %>
+      </span>
+      <span class="customers-articles__show-actions-seek">
+        <% if customer_signed_in? && current_customer.is_student == true %>
+          <%= link_to "Seek Me!へ", favorite_customer_path, class: "btn btn-success" %>
+        <% elsif  customer_signed_in? && current_customer.is_student == false %>
+          <%= link_to "Seek You!へ", seeks_path, class: "btn btn-success" %>
+        <% else %>
+        <% end %>
+      </span>
+    </div>
+
+    <span id="back">
+      <%= link_to "#" do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    </span>
+  </div>
+</div>

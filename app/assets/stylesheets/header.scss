@@ -1,0 +1,49 @@
+.header {
+  width: 100%;
+  height: 70px;
+  background-color: #353741;
+  display: flex;
+
+  &__logo {
+    color: #fff;
+    font-size: 20px;
+    width: 75px;
+    height: 75px;
+    margin-left: 15px;
+    text-align: center;
+    line-height: 70px;
+    background-image: image-url("SEEKMe_logo.png");
+    background-size: cover;
+  }
+
+  &__user-name {
+    color: #fff;
+    margin-left: 20%;
+    height: 70px;
+    line-height: 70px;
+  }
+
+  &__nav {
+    line-height: 70px;
+    position: absolute;
+    right: 0;
+  }
+
+  &__nav-mainItem {
+    list-style: none;
+    color: #fff;
+    display: inline-block;
+    margin: 0 20px;
+
+    &--item {
+      color: #fff;
+    }
+    &--item:hover {
+      border-bottom: 2px solid #E3AB41;
+    }
+  }
+
+  &__nav-mainItem:last-child {
+    margin-right: 100px;
+  }
+}

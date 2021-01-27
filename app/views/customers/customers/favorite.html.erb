@@ -1,0 +1,109 @@
+
+<!--css => app/assets/stylesheets/customers/customers.scss-->
+<!--helper => app/helpers/application_helper.rb-->
+
+<div class="customers">
+  <h3 class="customers__title">Seek Me!</h3>
+
+  <div class="customers__favorite">
+    <span class="customers__favorite-title">あなたが大切にしたい価値観　Top 3</span>
+    <div class="customers__favorite-rank">
+      <div class="customers__favorite-rank-non">
+        <% if @values_top_1 == nil && @values_top_2 == nil && @values_top_3 == nil %>
+          <%= "**気になった記事に「いいね！」すると、あなたの価値観Top3を分析します**" %>
+        <% end %>
+      </div>
+      <div class="customers__favorite-rank-item">
+        <% if @values_top_1 != nil %>
+          <span class="customers__favorite-rank-item--label"><%= "Top 1: " %></span>
+          <span class="customers__favorite-rank-item--value"><%= @values_top_1 %></span>
+        <% end %>
+      </div>
+      <div class="customers__favorite-rank-item">
+        <% if @values_top_2 != nil %>
+          <span class="customers__favorite-rank-item--label"><%= "Top 2: " %></span>
+          <span class="customers__favorite-rank-item--value"><%= @values_top_2 %></span>
+        <% end %>
+      </div>
+      <div class="customers__favorite-rank-item">
+        <% if @values_top_3 != nil %>
+          <span class="customers__favorite-rank-item--label"><%= "Top 3: " %></span>
+          <span class="customers__favorite-rank-item--value"><%= @values_top_3 %></span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="customers__favorite-offer">
+      <span class="customers__favorite-offer-title">あなたに企業オファーが届いてます！</span>
+      <table class="table customers__favorite-offer-table">
+        <tr class="">
+          <th class="customers__favorite-offer-table-header">企業名</th>
+          <th class="customers__favorite-offer-table-header">オファー日</th>
+          <th class="customers__favorite-offer-table-header">ナイスチャレンジ！</th>
+          <th class="customers__favorite-offer-table-header"></th>
+        </tr>
+
+        <% @seeks.each do |seek| %>
+          <% if seek.post_challenge.customer.id == current_customer.id %>
+            <tr>
+              <td>
+                <span class="is-student-color-bar--false"></span>
+                <%= full_name(seek.customer) %>
+              </td>
+              <td><%= id_created_at(seek) %></td>
+              <td><%= seek.post_challenge.comment %></td>
+              <td><%= link_to "オファーを見る", "#", class: "btn btn-sm btn-success" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="customers__favorite-table">
+      <h4>あなたが「いいね！」した記事</h4>
+      <table class="table table-hover">
+        <tr class="customers__favorite-table-header">
+          <th class="customers__favorite-table-header--item-1">タイトル</th>
+          <th class="customers__favorite-table-header--item-2">配信日</th>
+          <th class="customers__favorite-table-header--item-2">ジャンル</th>
+          <th class="customers__favorite-table-header--item-2">カテゴリー</th>
+          <th class="customers__favorite-table-header--item-3">総閲覧数</th>
+          <th class="customers__favorite-table-header--item-3">チャレンジ数</th>
+        </tr>
+
+        <% @favorites.each do |favorite| %>
+          <tr onclick='window.location="<%= article_path(favorite.article) %>"', class="table-cursor">
+            <td><%= favorite.article.title %></td>
+            <td><%= id_created_at(favorite.article) %></td>
+            <td><%= favorite.article.genre.name %></td>
+            <td>
+              <%= favorite.article.category_1 %><br />
+              <%= favorite.article.category_2 %><br />
+              <%= favorite.article.category_3 %>
+            </td>
+            <td class="customers__favorite-table--pv">
+              <%= @browsing_histories.where(article_id: favorite.article.id).count.to_s(:delimited) %> pv
+            </td>
+            <td class="customers__favorite-table--postchallenge">
+              <%= favorite.article.post_challenges.count.to_s(:delimited) %> 件
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="customers__favorite-paginate">
+        <%= paginate @favorites %>
+      </div>
+    </div>
+
+    <div class="customers__favorite-actions">
+      <%= link_to "My Pageへ戻る", customer_path, class: "btn btn-warning" %>
+    </div>
+
+    <span id="back">
+      <%= link_to "#" do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    </span>
+  </div>
+</div>

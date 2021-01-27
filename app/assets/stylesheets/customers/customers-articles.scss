@@ -1,0 +1,184 @@
+// Place all the styles related to the customers/articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.customers-articles {
+  width: 90%;
+  margin: 50px auto;
+
+  /*index*/
+  &__title {
+    margin-bottom: 30px;
+    margin-left: 5%;
+  }
+
+  &__search {
+    margin-bottom: 20px;
+  }
+
+  &__index-table-header {
+
+    &--item-1 {
+      width: 20%;
+      background-color: #80D789;
+    }
+    &--item-2 {
+      width: 11%;
+      background-color: #80D789;
+    }
+    &--item-3 {
+      width: 11%;
+      text-align: center;
+      background-color: #80D789;
+    }
+  }
+
+  &__index-table {
+    &--pvcount {
+      text-align: center;
+    }
+    &--favorite {
+      text-align: center;
+    }
+    &--postchallenge {
+      text-align: center;
+    }
+  }
+
+  /*sidebar*/
+  &__sidebar-table-header {
+    background-color: #fff19b;
+  }
+
+  &__sidebar-table-item {
+    text-align: center;
+  }
+
+  /*show*/
+  &__show {
+    width: 90%;
+    margin: 0 auto 100px auto;
+
+    &--non-customer {
+      color: red;
+    }
+  }
+
+  &__error {
+    color: red;
+  }
+
+  &__show-contents {
+    margin-bottom: 30px;
+  }
+
+  &__show-form {
+    margin-bottom: 30px;
+  }
+
+  &__show-form-title {
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  &__show-image {
+    width: 650px;
+    margin: 0 auto 30px auto;
+  }
+
+  &__show-form-category {
+    display: flex;
+
+    &--1 {
+      border: 1px solid #000;
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-right: 10px;
+      background-color: #A9E49C;
+    }
+  }
+
+  &__show-actions {
+    text-align: right;
+
+    &--index {
+      margin-right: 20px;
+    }
+    &--mypage {
+      margin-right: 20px;
+    }
+  }
+
+  /*_post_challenge*/
+  &__post-challenge {
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+
+  &__post-challenge-title {
+    font-weight: bold;
+    background: linear-gradient(transparent 70%, #55B17A 70%);
+  }
+
+  &__post-challenge-form {
+    display: flex;
+
+    &--item {
+      margin-right: 20px;
+    }
+  }
+
+  &__post-challenges {
+    &--actions {
+      text-align: center;
+    }
+  }
+
+  &__post-challenges-title {
+    font-weight: bold;
+    background: linear-gradient(transparent 70%, #E4AC42 70%);
+  }
+
+  &__post-challenges-is-student {
+    border-left: 5px solid #55B17A;
+    margin-left: 10px;
+    margin-right: 30px;
+  }
+
+  &__post-challenges-table-poster {
+    width: 15%;
+    background-color: #F6EB9F;
+  }
+  &__post-challenges-table-day {
+    width: 15%;
+    background-color: #F6EB9F;
+  }
+  &__post-challenges-table-image {
+    width: 15%;
+    background-color: #F6EB9F;
+  }
+  &__post-challenges-table-challenge {
+    width: 45%;
+    background-color: #F6EB9F;
+  }
+  &__post-challenges-table-action {
+    width: 10%;
+    background-color: #F6EB9F;
+  }
+
+  &__post-challenges-table-is-student-true {
+    border-left: 5px solid #55B17A;
+  }
+
+  &__post-challenges-table-is-student-false {
+    border-left: 5px solid #DA3D58;
+  }
+}
+
+#back {
+  font-size: 50px;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+}

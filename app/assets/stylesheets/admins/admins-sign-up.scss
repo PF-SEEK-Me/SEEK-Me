@@ -1,0 +1,18 @@
+.admins-sign-up {
+  width: 500px;
+  margin: 80px auto;
+
+  &__form {
+    margin-bottom: 40px;
+  }
+
+  &__password-limit {
+    font-size: 12px;
+  }
+
+  &__actions {
+    width: 200px;
+    margin: 0 auto;
+  }
+
+}
