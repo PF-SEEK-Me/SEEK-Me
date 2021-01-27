@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_132111) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
+    t.integer "gender", null: false
+    t.integer "age", null: false
     t.string "email", null: false
     t.string "encrypted_password", null: false
     t.string "postal_code", null: false
@@ -61,8 +63,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_132111) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "gender"
-    t.integer "age"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
