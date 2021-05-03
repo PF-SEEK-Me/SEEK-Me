@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: "Dockerfile.local"
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+    command: bundle exec rails s -p 3000 -b 0.0.0.0 -P /dev/null
+    volumes:
+      - .:/app:cached
+      - ~/.ssh:/root/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+      # exclude volumes
+      - /app/vendor
+      - /app/tmp
+      - /app/log
+      - /app/.git
+    ports:
+      - "3000:3000"
+    expose: [3000]
+    tty: true
+    stdin_open: true
+
